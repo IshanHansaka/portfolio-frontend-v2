@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { Bot } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -6,41 +6,20 @@ export default function Footer() {
       <footer>
         <div className="bg-initial py-3">
           <div className="container-fluid mx-auto px-5">
-            <div className="flex flex-wrap items-center justify-between">
+            <div className="flex flex-wrap items-end justify-between">
               <div className="relative px-4">
-                <div className="font-primary relative z-10 text-left text-gray-700 text-sm xl:text-[1.05rem] font-normal">
+                <div className="font-sans font-primary relative z-10 text-left text-gray-800 text-sm xl:text-[1.02rem] font-normal">
                   <p>Copyright © {new Date().getFullYear()} Ishan</p>
                   <p>All Rights Reserved.</p>
                 </div>
               </div>
-              <div className="footerSocial relative px-2">
-                <ul className="relative z-10 text-center leading-tight text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-4xl">
-                  <li className="inline-block mx-2">
-                    <Link href="mailto:ishanhansakasilva@gmail.com">
-                      {/* <Icon name="material-symbols:mail-outline-rounded" /> */}
-                    </Link>
-                  </li>
-                  <li className="inline-block mx-2">
-                    <Link href="https://www.linkedin.com/in/ishanhansakasilva">
-                      {/* <Icon name="uil:linkedin" /> */}
-                    </Link>
-                  </li>
-                  <li className="inline-block mx-2">
-                    <Link href="https://github.com/IshanHansaka">
-                      {/* <Icon name="uil:github" /> */}
-                    </Link>
-                  </li>
-                  <li className="inline-block mx-2">
-                    <Link href="https://medium.com/@ishanhansakasilva">
-                      {/* <Icon name="simple-icons:medium" /> */}
-                    </Link>
-                  </li>
-                  <li className="inline-block mx-2">
-                    <Link href="https://stackoverflow.com/users/22502508/ishan-hansaka-silva">
-                      {/* <Icon name="mdi:stackoverflow" /> */}
-                    </Link>
-                  </li>
-                </ul>
+              <div className="relative flex items-center mt-2 sm:mt-0 flex-row-reverse md:flex-row-reverse group">
+                <div
+                  className="p-3 border-3 cursor-pointer border-gray-800 rounded-full"
+                  aria-label="Chat with me"
+                >
+                  <Bot width={42} height={42} />
+                </div>
               </div>
             </div>
           </div>
