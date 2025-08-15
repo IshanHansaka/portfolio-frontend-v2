@@ -8,7 +8,7 @@ export default function ViewResumeButton() {
           'https://drive.google.com/file/d/1cHLMgH_WU3xiYS9B2crjpVbosSajvTip/view'
         )
       }
-      className="mt-10 px-6 py-2 border-2 border-black bg-black text-white rounded-md hover:bg-white hover:text-black transition duration-300 ease-in-out"
+      className="mt-6 px-6 py-2 font-normal cursor-pointer border-2 border-slate-800 bg-slate-800 text-white rounded-md hover:bg-white hover:text-slate-800 transition duration-300 ease-in-out"
     >
       View My Resume
     </button>

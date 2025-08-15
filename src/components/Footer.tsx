@@ -8,17 +8,17 @@ export default function Footer() {
           <div className="container-fluid mx-auto px-5">
             <div className="flex flex-wrap items-end justify-between">
               <div className="relative px-4">
-                <div className="font-sans font-primary relative z-10 text-left text-gray-800 text-sm xl:text-[1.02rem] font-normal">
+                <div className="font-sans font-primary relative z-10 text-left text-slate-800 text-sm xl:text-[1.02rem] font-normal">
                   <p>Copyright © {new Date().getFullYear()} Ishan</p>
                   <p>All Rights Reserved.</p>
                 </div>
               </div>
               <div className="relative flex items-center mt-2 sm:mt-0 flex-row-reverse md:flex-row-reverse group">
                 <div
-                  className="p-3 border-3 cursor-pointer border-gray-800 rounded-full"
+                  className="p-5 cursor-pointer bg-slate-800 rounded-full"
                   aria-label="Chat with me"
                 >
-                  <Bot width={42} height={42} />
+                  <Bot width={28} height={28} color="white" />
                 </div>
               </div>
             </div>
