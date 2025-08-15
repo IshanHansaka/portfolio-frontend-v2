@@ -9,11 +9,17 @@ export default function VerticalDotScrollbar() {
     { id: 'home', component: <Home /> },
     { id: 'project', component: <Project /> },
   ];
+
   const [currentSection, setCurrentSection] = useState(0);
 
   const isTransitioning = useRef(false);
   const transitionTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
   const startY = useRef(0);
+
+  const currentSectionRef = useRef(0);
+  useEffect(() => {
+    currentSectionRef.current = currentSection;
+  }, [currentSection]);
 
   const navigateToSection = (index: number): void => {
     if (index < 0 || index >= sections.length) return;
@@ -25,63 +31,62 @@ export default function VerticalDotScrollbar() {
   };
 
   const lockScroll = () => {
-    if (isTransitioning.current) return true; // block if already scrolling
+    if (isTransitioning.current) return true;
     isTransitioning.current = true;
 
     if (transitionTimeout.current) clearTimeout(transitionTimeout.current);
     transitionTimeout.current = setTimeout(() => {
       isTransitioning.current = false;
-    }, 800); // lock duration
+    }, 800);
 
     return false;
   };
 
-  // Keyboard navigation
-  const handleKeydown = (event: KeyboardEvent): void => {
-    if (lockScroll()) return;
-
-    if (event.key === 'ArrowDown' && currentSection < sections.length - 1) {
-      navigateToSection(currentSection + 1);
-    } else if (event.key === 'ArrowUp' && currentSection > 0) {
-      navigateToSection(currentSection - 1);
-    }
-  };
-
-  // Wheel navigation
-  const handleWheel = (event: WheelEvent): void => {
-    event.preventDefault(); // disable normal scroll
-    if (lockScroll()) return;
-
-    if (event.deltaY > 0 && currentSection < sections.length - 1) {
-      navigateToSection(currentSection + 1);
-    } else if (event.deltaY < 0 && currentSection > 0) {
-      navigateToSection(currentSection - 1);
-    }
-  };
-
-  // Touch swipe navigation
-  const handleTouchStart = (event: TouchEvent) => {
-    startY.current = event.touches[0].clientY;
-  };
-
-  const handleTouchMove = (event: TouchEvent): void => {
-    if (isTransitioning.current) return;
-
-    const currentY = event.touches[0].clientY;
-    const deltaY = startY.current - currentY;
-
-    if (Math.abs(deltaY) > 50) {
-      if (deltaY > 0 && currentSection < sections.length - 1) {
-        navigateToSection(currentSection + 1); // swipe up
-      } else if (deltaY < 0 && currentSection > 0) {
-        navigateToSection(currentSection - 1); // swipe down
-      }
-      lockScroll();
-    }
-  };
-
   useEffect(() => {
-    // Prevent normal scrolling
+    const handleKeydown = (event: KeyboardEvent): void => {
+      if (lockScroll()) return;
+      const current = currentSectionRef.current;
+
+      if (event.key === 'ArrowDown' && current < sections.length - 1) {
+        navigateToSection(current + 1);
+      } else if (event.key === 'ArrowUp' && current > 0) {
+        navigateToSection(current - 1);
+      }
+    };
+
+    const handleWheel = (event: WheelEvent): void => {
+      event.preventDefault();
+      if (lockScroll()) return;
+      const current = currentSectionRef.current;
+
+      if (event.deltaY > 0 && current < sections.length - 1) {
+        navigateToSection(current + 1);
+      } else if (event.deltaY < 0 && current > 0) {
+        navigateToSection(current - 1);
+      }
+    };
+
+    const handleTouchStart = (event: TouchEvent) => {
+      startY.current = event.touches[0].clientY;
+    };
+
+    const handleTouchMove = (event: TouchEvent): void => {
+      if (isTransitioning.current) return;
+
+      const currentY = event.touches[0].clientY;
+      const deltaY = startY.current - currentY;
+      const current = currentSectionRef.current;
+
+      if (Math.abs(deltaY) > 50) {
+        if (deltaY > 0 && current < sections.length - 1) {
+          navigateToSection(current + 1);
+        } else if (deltaY < 0 && current > 0) {
+          navigateToSection(current - 1);
+        }
+        lockScroll();
+      }
+    };
+
     document.body.style.overflow = 'hidden';
 
     window.addEventListener('keydown', handleKeydown);
@@ -97,7 +102,7 @@ export default function VerticalDotScrollbar() {
       window.removeEventListener('touchmove', handleTouchMove);
       if (transitionTimeout.current) clearTimeout(transitionTimeout.current);
     };
-  }, [currentSection]);
+  }, []);
 
   return (
     <>
@@ -127,12 +132,13 @@ export default function VerticalDotScrollbar() {
         </ul>
       </nav>
 
-      {/* Sections Example */}
+      {/* Sections */}
       <div>
         {sections.map((section) => (
           <div
             key={section.id}
             id={section.id}
+            className="h-screen flex items-center justify-center"
           >
             {section.component}
           </div>
