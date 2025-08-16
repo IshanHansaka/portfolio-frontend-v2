@@ -122,7 +122,7 @@ export default function VerticalDotScrollbar() {
                 onClick={() => navigateToSection(index)}
                 className={`my-3.5 block w-3 h-3 rounded-full cursor-pointer transition-colors duration-300 ${
                   currentSection === index
-                    ? 'bg-slate-800'
+                    ? 'bg-slate-900'
                     : 'bg-slate-300 hover:bg-slate-500'
                 }`}
                 aria-label={`Go to ${section.id}`}

@@ -1,6 +1,5 @@
 import Image from 'next/image';
-import Link from 'next/link';
-import { Mail, Github, Linkedin } from 'lucide-react';
+import { Bot } from 'lucide-react';
 
 export default function Header() {
   return (
@@ -16,24 +15,14 @@ export default function Header() {
                 className="object-contain"
               />
             </div>
-            <div className="relative px-2">
-              <ul className="relative space-x-8 z-10 text-center leading-tight text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-4xl">
-                <Link href="mailto:ishanhansakasilva@gmail.com">
-                  <li className="bg-slate-700 inline-block rounded-full p-3">
-                    <Mail stroke="white" width={18} height={18} />
-                  </li>
-                </Link>
-                <Link href="https://www.linkedin.com/in/ishanhansakasilva">
-                  <li className="bg-slate-700 inline-block rounded-full p-3">
-                    <Linkedin stroke="white" width={18} height={18} />
-                  </li>
-                </Link>
-                <Link href="https://github.com/IshanHansaka">
-                  <li className="bg-slate-700 inline-block rounded-full p-3">
-                    <Github stroke="white" width={18} height={18} />
-                  </li>
-                </Link>
-              </ul>
+
+            <div className="mt-2 md:mt-0 flex justify-end">
+              <button
+                className="p-3 md:p-4 bg-slate-800 rounded-full hover:bg-slate-700 transition-colors duration-200 flex items-center justify-center"
+                aria-label="Chat with me"
+              >
+                <Bot className="w-4 h-4 md:w-6 md:h-6 text-white" />
+              </button>
             </div>
           </div>
         </div>

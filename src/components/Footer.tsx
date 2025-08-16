@@ -1,4 +1,5 @@
-import { Bot } from 'lucide-react';
+import Link from 'next/link';
+import { Mail, Github, Linkedin } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -13,13 +14,24 @@ export default function Footer() {
                   <p>All Rights Reserved.</p>
                 </div>
               </div>
-              <div className="relative flex items-center mt-2 sm:mt-0 flex-row-reverse md:flex-row-reverse group">
-                <div
-                  className="p-5 cursor-pointer bg-slate-800 rounded-full"
-                  aria-label="Chat with me"
-                >
-                  <Bot width={24} height={24} color="white" />
-                </div>
+              <div className="relative px-2">
+                <ul className="relative space-x-8 z-10 text-center leading-tight text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-4xl">
+                  <Link href="mailto:ishanhansakasilva@gmail.com">
+                    <li className="bg-slate-700 inline-block rounded-full p-3">
+                      <Mail stroke="white" width={18} height={18} />
+                    </li>
+                  </Link>
+                  <Link href="https://www.linkedin.com/in/ishanhansakasilva">
+                    <li className="bg-slate-700 inline-block rounded-full p-3">
+                      <Linkedin stroke="white" width={18} height={18} />
+                    </li>
+                  </Link>
+                  <Link href="https://github.com/IshanHansaka">
+                    <li className="bg-slate-700 inline-block rounded-full p-3">
+                      <Github stroke="white" width={18} height={18} />
+                    </li>
+                  </Link>
+                </ul>
               </div>
             </div>
           </div>
