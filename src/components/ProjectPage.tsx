@@ -28,18 +28,6 @@ export default function ProjectPage() {
     fetchProjects();
   }, []);
 
-  // const nextProject = () => {
-  //   setCurrentIndex((prevIndex) =>
-  //     prevIndex === projects.length - 1 ? 0 : prevIndex + 1
-  //   );
-  // };
-
-  // const prevProject = () => {
-  //   setCurrentIndex((prevIndex) =>
-  //     prevIndex === 0 ? projects.length - 1 : prevIndex - 1
-  //   );
-  // };
-
   const goToProject: GoToProjectFn = (index) => {
     setCurrentIndex(index);
   };
@@ -75,7 +63,7 @@ export default function ProjectPage() {
         <div className="rounded-2xl shadow-2xl overflow-hidden mb-6 relative bg-slate-50">
           <div className="grid md:grid-cols-2">
             {/* Hide image on mobile */}
-            <div className="hidden md:block relative h-[370px] bg-gray-200 overflow-hidden">
+            <div className="hidden md:block relative h-[380px] bg-gray-200 overflow-hidden">
               <Image
                 src={currentProject?.imageURL || '/placeholder.png'}
                 alt={currentProject?.name || 'Project image'}
@@ -87,16 +75,16 @@ export default function ProjectPage() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
             </div>
 
-            <div className="p-6 sm:p-8 md:px-12 md:pt-8 flex flex-col justify-center">
+            <div className="px-6 py-2 sm:p-8 md:px-12 md:py-4 flex flex-col justify-center">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-4 text-center md:text-left">
                 {currentProject.name}
               </h2>
 
-              <p className="text-gray-600 text-base sm:text-lg leading-relaxed mb-6 text-center md:text-left">
+              <p className="text-gray-600 text-base sm:text-lg leading-relaxed mb-4 text-center md:text-left">
                 {currentProject.description}
               </p>
 
-              <div className="mb-6">
+              <div className="mb-4">
                 <div className="flex flex-wrap gap-2 justify-center md:justify-start">
                   {currentProject.tools.map((tool, index) => (
                     <span
@@ -136,17 +124,6 @@ export default function ProjectPage() {
               </div>
             </div>
           </div>
-
-          {/* Next button */}
-          {/* <div className="absolute top-3 right-3">
-            <button
-              onClick={nextProject}
-              className="p-2 bg-white rounded-full shadow-lg hover:shadow-xl transition-shadow duration-200 text-gray-600 hover:text-gray-800"
-              aria-label="Next project"
-            >
-              <ChevronRight size={22} />
-            </button>
-          </div> */}
         </div>
 
         {/* Dots */}
