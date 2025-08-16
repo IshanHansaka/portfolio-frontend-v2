@@ -1,8 +1,7 @@
-'use client';
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { BookOpen, Users } from 'lucide-react';
+import Image from 'next/image';
 
 export default function AboutPage() {
   const experiences = [
@@ -26,7 +25,7 @@ export default function AboutPage() {
   const education = [
     {
       image: '/images/uom-logo.png',
-      degree: 'B.Sc. (Hons.) in IT',
+      degree: 'B.Sc. (Hons.) in Information Technology',
       institution: 'University of Moratuwa',
     },
     {
@@ -42,17 +41,17 @@ export default function AboutPage() {
   ];
 
   return (
-    <div className="min-h-[calc(100vh-100px)] md:min-h-screen flex flex-col items-center justify-start md:justify-center bg-fixed bg-no-repeat bg-cover bg-center px-6 pt-10 pb-16 md:px-10 md:py-24 font-sans">
+    <div className="min-h-[calc(100vh-100px)] md:min-h-screen flex flex-col items-center justify-start md:justify-center bg-fixed bg-no-repeat bg-cover bg-center px-4 pt-8 pb-12 sm:px-6 md:px-10 md:py-24 font-sans">
       <div className="w-full max-w-6xl">
         <div className="text-center mb-8 md:mb-12">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-800 mb-4">
+          <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold text-slate-800 mb-4">
             About Me
           </h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-sm md:text-lg text-slate-600 max-w-6xl mx-auto leading-relaxed"
+            className="text-sm sm:text-base md:text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed px-2"
           >
             A self-motivated and adaptable IT undergraduate with strong
             technical knowledge, problem-solving skills, and a passion for
@@ -63,35 +62,35 @@ export default function AboutPage() {
           </motion.p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          {/* Education Section */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-slate-50 rounded-2xl p-4 md:py-6 md:px-8 shadow-lg border border-slate-100"
+            className="bg-slate-50 rounded-2xl p-4 sm:p-6 md:p-8 shadow-lg border border-slate-100 cursor-default"
           >
-            <div className="flex items-center mb-2">
-              <BookOpen className="text-slate-700 mr-3" size={24} />
-              <h2 className="text-xl md:text-2xl font-semibold text-slate-800">
+            <div className="flex items-center mb-4">
+              <BookOpen className="text-slate-700 mr-3 shrink-0" size={22} />
+              <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-slate-800">
                 Education
               </h2>
             </div>
 
-            <div className="space-y-3">
+            <div className="space-y-4">
               {education.map((edu, index) => (
-                <div className="flex items-center gap-4" key={index}>
-                  <img
+                <div className="flex items-center gap-3 sm:gap-4" key={index}>
+                  <Image
                     src={edu.image}
                     alt={edu.degree}
-                    className="w-7 h-7 md:w-10 md:h-10 rounded-full mb-2"
+                    width={40}
+                    height={40}
+                    className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-full object-cover"
                   />
                   <div>
-                    <h3 className="text-sm md:text-lg font-medium text-slate-800">
+                    <h3 className="text-sm sm:text-base md:text-lg font-medium text-slate-800">
                       {edu.degree}
                     </h3>
-
-                    <p className="text-xs md:text-[1rem] text-slate-600 font-normal">
+                    <p className="text-xs sm:text-sm md:text-[1rem] text-slate-600 font-normal">
                       {edu.institution}
                     </p>
                   </div>
@@ -100,33 +99,34 @@ export default function AboutPage() {
             </div>
           </motion.div>
 
-          {/* Experience Section */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="bg-slate-50 rounded-2xl p-4 md:py-6 md:px-8 shadow-lg border border-slate-100"
+            className="bg-slate-50 rounded-2xl p-4 sm:p-6 md:p-8 shadow-lg border border-slate-100 cursor-default"
           >
-            <div className="flex items-center mb-2">
-              <Users className="text-slate-700 mr-3" size={24} />
-              <h2 className="text-xl md:text-2xl font-semibold text-slate-800">
+            <div className="flex items-center mb-4">
+              <Users className="text-slate-700 mr-3 shrink-0" size={22} />
+              <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-slate-800">
                 Experience
               </h2>
             </div>
 
-            <div className="space-y-3">
+            <div className="space-y-4">
               {experiences.map((exp, index) => (
-                <div className="flex items-center gap-4" key={index}>
-                  <img
+                <div className="flex items-center gap-3 sm:gap-4" key={index}>
+                  <Image
                     src={exp.image}
                     alt={exp.role}
-                    className="w-7 h-7 md:w-10 md:h-10 rounded-full mb-2"
+                    width={40}
+                    height={40}
+                    className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-full object-cover"
                   />
                   <div>
-                    <h3 className="text-sm md:text-lg font-medium text-slate-800">
+                    <h3 className="text-sm sm:text-base md:text-lg font-medium text-slate-800">
                       {exp.role}
                     </h3>
-                    <p className="text-xs md:text-[1rem] text-slate-600 font-normal">
+                    <p className="text-xs sm:text-sm md:text-[1rem] text-slate-600 font-normal">
                       {exp.organization}
                     </p>
                   </div>
