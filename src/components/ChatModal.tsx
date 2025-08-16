@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Bot, Send } from 'lucide-react';
+import { X, Bot, Send } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { easeIn, easeOut } from 'framer-motion';
 
@@ -245,7 +245,7 @@ export default function ChatModal({ isOpen, onClose }: ChatModalProps) {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="fixed top-14 md:top-20 right-4 z-[999] w-84 md:w-100 h-[calc(100vh-12rem)] md:h-[calc(100vh-10rem)] bg-white rounded-lg shadow-2xl flex flex-col md:mr-4"
+            className="fixed top-16 md:top-20 right-4 z-[999] w-[92%] md:w-100 h-[calc(100vh-13rem)] md:h-[calc(100vh-10rem)] bg-white rounded-lg shadow-2xl flex flex-col md:mr-4"
           >
             {/* Header */}
             <motion.div
@@ -266,10 +266,15 @@ export default function ChatModal({ isOpen, onClose }: ChatModalProps) {
                 >
                   <Bot className="w-6 h-6" />
                 </motion.div>
-                <h3 className="font-medium">
-                  Chat with Ishan&apos;s AI Assistant
-                </h3>
+                <h3 className="font-medium">Chat with AI Assistant</h3>
               </div>
+              <button
+                onClick={onClose}
+                className="p-1 hover:bg-slate-700 rounded transition-colors duration-200"
+                aria-label="Close chat"
+              >
+                <X className="w-4.5 h-4.5 stroke-3" />
+              </button>
             </motion.div>
 
             {/* Messages */}
