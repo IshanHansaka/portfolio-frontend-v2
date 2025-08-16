@@ -245,7 +245,7 @@ export default function ChatModal({ isOpen, onClose }: ChatModalProps) {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="fixed top-12 md:top-20 right-4 z-[999] w-100 h-[calc(100vh-6rem)] md:h-[calc(100vh-10rem)] bg-white rounded-lg shadow-2xl flex flex-col md:mr-4"
+            className="fixed top-14 md:top-20 right-4 z-[999] w-84 md:w-100 h-[calc(100vh-12rem)] md:h-[calc(100vh-10rem)] bg-white rounded-lg shadow-2xl flex flex-col md:mr-4"
           >
             {/* Header */}
             <motion.div
@@ -356,7 +356,7 @@ export default function ChatModal({ isOpen, onClose }: ChatModalProps) {
                   onChange={(e) => setMessage(e.target.value)}
                   onKeyPress={handleKeyPress}
                   placeholder="Type your message..."
-                  className="flex-1 p-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-800 focus:border-transparent text-sm transition-all duration-200"
+                  className="flex-1 w-full p-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-800 focus:border-transparent text-sm transition-all duration-200"
                   disabled={loading}
                   whileFocus={{ scale: 1.01 }}
                   transition={{ duration: 0.2 }}
