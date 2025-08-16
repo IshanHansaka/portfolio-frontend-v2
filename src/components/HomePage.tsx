@@ -3,7 +3,7 @@ import ViewResumeButton from './ViewResumeButton';
 import Image from 'next/image';
 export default function HomePage() {
   return (
-    <div className="min-h-[calc(100vh-100px)] md:min-h-screen flex flex-col md:flex-row items-center justify-start md:justify-center md:mt-0 mt-10 bg-fixed bg-no-repeat bg-cover bg-center px-6 pt-16 pb-16 md:px-10 md:pt-24 md:pb-24 font-sans">
+    <div className="min-h-[calc(100vh-100px)] md:min-h-screen flex flex-col md:flex-row items-center justify-start md:justify-center bg-fixed bg-no-repeat bg-cover bg-center px-6 pt-16 pb-16 md:px-10 md:pt-24 md:pb-24 font-sans">
       <div className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-1">
         <div className="flex flex-col items-center md:items-start text-center md:text-left">
           <h4 className="font-poppins text-slate-800 pl-[3px] text-1xl md:text-3xl flex-wrap">

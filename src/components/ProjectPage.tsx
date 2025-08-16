@@ -43,7 +43,7 @@ export default function ProjectPage() {
   }
 
   return (
-    <div className="min-h-[calc(100vh-100px)] md:min-h-screen flex flex-col md:flex-row items-center justify-start md:justify-center md:mt-0 mt-6 bg-fixed bg-no-repeat bg-cover bg-center px-6 pt-16 pb-16 md:px-10 md:pt-24 md:pb-24 font-sans">
+    <div className="min-h-[calc(100vh-100px)] md:min-h-screen flex flex-col md:flex-row items-center justify-start md:justify-center bg-fixed bg-no-repeat bg-cover bg-center px-6 pt-16 pb-16 md:px-10 md:pt-24 md:pb-24 font-sans">
       <div className="w-full max-w-6xl">
         <div className="text-center mb-4">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-800 mb-1">
