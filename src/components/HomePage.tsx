@@ -1,6 +1,6 @@
 import React from 'react';
 import ViewResumeButton from './ViewResumeButton';
-
+import Image from 'next/image';
 export default function HomePage() {
   return (
     <div className="min-h-screen flex flex-col md:flex-row items-center justify-center bg-fixed bg-no-repeat bg-cover bg-center px-6 pt-16 pb-16 md:px-10 md:pt-24 md:pb-24 font-sans">
@@ -19,12 +19,15 @@ export default function HomePage() {
           </div>
           <ViewResumeButton />
         </div>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/images/ishan-dp2.webp"
-          alt="Profile Picture"
-          className="w-48 md:w-[25rem] rounded-full mb-10"
-        />
+        <div className="relative w-48 md:w-[25rem] h-48 md:h-[25rem]">
+          <Image
+            src="/images/ishan-dp2.webp"
+            alt="Profile Picture"
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 400px"
+            className="rounded-full object-cover"
+          />
+        </div>
       </div>
     </div>
   );
