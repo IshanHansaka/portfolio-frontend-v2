@@ -16,7 +16,7 @@ export default function Footer() {
                 </div>
               </div>
               <div className="relative">
-                <ul className="relative space-x-3 md:space-x-8 z-10 text-center leading-tight text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-4xl">
+                <ul className="relative space-x-2.5 md:space-x-6 z-10 text-center leading-tight text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-4xl">
                   <Link href="mailto:ishanhansakasilva@gmail.com">
                     <li className="bg-slate-800 hover:bg-slate-700 inline-block rounded-full p-2 md:p-3">
                       <Mail className="w-4 h-4 md:w-5 md:h-5 text-white" />

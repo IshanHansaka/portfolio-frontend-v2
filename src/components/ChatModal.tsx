@@ -245,7 +245,7 @@ export default function ChatModal({ isOpen, onClose }: ChatModalProps) {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="fixed top-16 md:top-20 right-4 z-[999] w-[92%] md:w-100 h-[calc(100vh-13rem)] md:h-[calc(100vh-10rem)] bg-white rounded-lg shadow-2xl flex flex-col md:mr-4"
+            className="fixed top-16 md:top-21 right-4 z-[999] w-[92%] md:w-100 h-[calc(100vh-13rem)] md:h-[calc(100vh-10rem)] bg-white rounded-lg shadow-2xl flex flex-col md:mr-4"
           >
             {/* Header */}
             <motion.div
