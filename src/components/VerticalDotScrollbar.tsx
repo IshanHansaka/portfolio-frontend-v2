@@ -142,7 +142,7 @@ export default function VerticalDotScrollbar() {
       {/* Sections */}
       <div>
         {sections.map((section) => (
-          <div key={section.id} id={section.id}>
+          <div key={section.id} id={section.id} className='h-screen flex justify-center items-center'>
             {section.component}
           </div>
         ))}

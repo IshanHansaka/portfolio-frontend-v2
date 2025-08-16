@@ -43,7 +43,7 @@ export default function ProjectPage() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center px-4 py-8 md:px-10 md:py-12 font-sans min-h-screen">
+    <div className="min-h-[calc(100vh-100px)] md:min-h-screen flex flex-col items-center justify-center px-4 py-8 md:px-10 md:py-12 font-sans">
       <div className="w-full max-w-6xl">
         <div className="text-center mb-4">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-800 mb-1">

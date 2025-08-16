@@ -16,7 +16,7 @@ export default function Header() {
               />
             </div>
 
-            <div className="mt-2 md:mt-0 flex justify-end">
+            <div className="flex justify-end">
               <button
                 className="p-3 md:p-4 bg-slate-800 rounded-full hover:bg-slate-700 transition-colors duration-200 flex items-center justify-center"
                 aria-label="Chat with me"

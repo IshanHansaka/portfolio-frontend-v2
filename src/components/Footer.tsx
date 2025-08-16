@@ -14,8 +14,8 @@ export default function Footer() {
                   <p>All Rights Reserved.</p>
                 </div>
               </div>
-              <div className="relative px-2">
-                <ul className="relative space-x-8 z-10 text-center leading-tight text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-4xl">
+              <div className="relative">
+                <ul className="relative space-x-4 md:space-x-8 z-10 text-center leading-tight text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-4xl">
                   <Link href="mailto:ishanhansakasilva@gmail.com">
                     <li className="bg-slate-700 inline-block rounded-full p-2 md:p-3">
                       <Mail className="w-3 h-3 md:w-5 md:h-5 text-white" />
