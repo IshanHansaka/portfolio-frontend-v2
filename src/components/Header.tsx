@@ -45,7 +45,7 @@ export default function Header() {
         </header>
       </div>
 
-      <ChatModal isOpen={isChatOpen} />
+      <ChatModal isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} />
     </>
   );
 }
