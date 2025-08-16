@@ -61,7 +61,7 @@ export default function ProjectPage() {
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-800 mb-1">
             Projects
           </h1>
-          <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto">
+          <p className="text-sm md:text-lg text-slate-600 max-w-2xl mx-auto">
             Explore some of my recent projects:{' '}
             <Link
               href="https://github.com/IshanHansaka?tab=repositories"
@@ -104,11 +104,11 @@ export default function ProjectPage() {
                 transition={{ duration: 0.6, ease: 'easeInOut' }}
                 className="px-6 py-4 sm:p-8 md:px-12 md:py-4 flex flex-col justify-center"
               >
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-800 mb-4 text-center md:text-left">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-800 mb-3 text-center md:text-left">
                   {currentProject.name}
                 </h2>
 
-                <p className="text-gray-600 text-base sm:text-lg leading-relaxed mb-4 text-center md:text-left">
+                <p className="text-gray-600 text-sm md:text-lg leading-relaxed mb-5 text-center md:text-left">
                   {currentProject.description}
                 </p>
 

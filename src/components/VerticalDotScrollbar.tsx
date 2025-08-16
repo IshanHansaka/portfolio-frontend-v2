@@ -3,11 +3,13 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import Home from '@/components/HomePage';
 import Project from '@/components/ProjectPage';
+import AboutPage from './AboutPage';
 
 export default function VerticalDotScrollbar() {
   const sections = React.useMemo(
     () => [
       { id: 'home', component: <Home /> },
+      { id: 'about', component: <AboutPage /> },
       { id: 'project', component: <Project /> },
     ],
     []
@@ -142,7 +144,11 @@ export default function VerticalDotScrollbar() {
       {/* Sections */}
       <div>
         {sections.map((section) => (
-          <div key={section.id} id={section.id} className='h-screen flex justify-center items-center'>
+          <div
+            key={section.id}
+            id={section.id}
+            className="h-screen flex justify-center items-center"
+          >
             {section.component}
           </div>
         ))}

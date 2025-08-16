@@ -43,15 +43,26 @@ export default function AboutPage() {
   return (
     <div className="min-h-[calc(100vh-100px)] md:min-h-screen flex flex-col items-center justify-start md:justify-center bg-fixed bg-no-repeat bg-cover bg-center px-4 pt-8 pb-12 sm:px-6 md:px-10 md:py-24 font-sans">
       <div className="w-full max-w-6xl">
-        <div className="text-center mb-8 md:mb-12">
-          <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold text-slate-800 mb-4">
+        <div className="text-center mb-3 md:mb-8">
+          <h1 className="text-3xl sm:text-3xl md:text-5xl font-bold text-slate-800 md:mb-4">
             About Me
           </h1>
+          {/* Short description for mobile */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-sm sm:text-base md:text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed px-2"
+            className="block sm:hidden text-sm text-slate-600 max-w-md mx-auto leading-relaxed px-2"
+          >
+            Passionate IT undergraduate eager to learn and contribute to
+            real-world projects.
+          </motion.p>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="hidden sm:block text-sm sm:text-base md:text-lg mx-auto text-slate-600 max-w-5xl leading-relaxed"
           >
             A self-motivated and adaptable IT undergraduate with strong
             technical knowledge, problem-solving skills, and a passion for
@@ -67,7 +78,7 @@ export default function AboutPage() {
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-slate-50 rounded-2xl p-4 sm:p-6 md:p-8 shadow-lg border border-slate-100 cursor-default"
+            className="bg-slate-50 rounded-2xl p-4 sm:p-6 md:p-8 shadow-lg border border-slate-100 cursor-default mb-2"
           >
             <div className="flex items-center mb-4">
               <BookOpen className="text-slate-700 mr-3 shrink-0" size={22} />
