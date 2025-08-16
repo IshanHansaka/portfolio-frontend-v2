@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <div className="fixed bottom-0 left-0 z-20 w-full h-auto">
       <footer>
-        <div className="bg-initial py-3">
+        <div className="bg-initial pb-3">
           <div className="container-fluid mx-auto px-5">
             <div className="flex flex-wrap items-end justify-between">
               <div className="relative px-4">
@@ -18,7 +18,7 @@ export default function Footer() {
                   className="p-5 cursor-pointer bg-slate-800 rounded-full"
                   aria-label="Chat with me"
                 >
-                  <Bot width={28} height={28} color="white" />
+                  <Bot width={24} height={24} color="white" />
                 </div>
               </div>
             </div>
