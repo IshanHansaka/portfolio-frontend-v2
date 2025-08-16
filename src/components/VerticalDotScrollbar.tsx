@@ -1,34 +1,40 @@
 'use client';
 
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import Home from '@/components/HomePage';
 import Project from '@/components/ProjectPage';
 
 export default function VerticalDotScrollbar() {
-  const sections = [
-    { id: 'home', component: <Home /> },
-    { id: 'project', component: <Project /> },
-  ];
+  const sections = React.useMemo(
+    () => [
+      { id: 'home', component: <Home /> },
+      { id: 'project', component: <Project /> },
+    ],
+    []
+  );
 
   const [currentSection, setCurrentSection] = useState(0);
 
   const isTransitioning = useRef(false);
   const transitionTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
   const startY = useRef(0);
-
   const currentSectionRef = useRef(0);
+
   useEffect(() => {
     currentSectionRef.current = currentSection;
   }, [currentSection]);
 
-  const navigateToSection = (index: number): void => {
-    if (index < 0 || index >= sections.length) return;
-    setCurrentSection(index);
-    const section = document.getElementById(sections[index].id);
-    if (section) {
-      section.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  const navigateToSection = useCallback(
+    (index: number): void => {
+      if (index < 0 || index >= sections.length) return;
+      setCurrentSection(index);
+      const section = document.getElementById(sections[index].id);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
+    },
+    [sections]
+  );
 
   const lockScroll = () => {
     if (isTransitioning.current) return true;
@@ -102,7 +108,7 @@ export default function VerticalDotScrollbar() {
       window.removeEventListener('touchmove', handleTouchMove);
       if (transitionTimeout.current) clearTimeout(transitionTimeout.current);
     };
-  }, []);
+  }, [navigateToSection, sections.length]);
 
   return (
     <>
