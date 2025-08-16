@@ -20,8 +20,8 @@ export default function ProjectPage() {
       try {
         const data = await fetchAllProjects();
         setProjects(data);
-      } catch {
-        console.log('Failed to fetch projects');
+      } catch (error) {
+        console.log('Failed to fetch projects', error);
       }
     };
 

@@ -94,6 +94,7 @@ export default function VerticalDotScrollbar() {
     };
 
     document.body.style.overflow = 'hidden';
+    // document.body.classList.add('no-scroll');
 
     window.addEventListener('keydown', handleKeydown);
     window.addEventListener('wheel', handleWheel, { passive: false });

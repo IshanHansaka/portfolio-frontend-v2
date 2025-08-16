@@ -1,11 +1,9 @@
-import HomePage from '@/components/HomePage';
-import ProjectPage from '@/components/ProjectPage';
+import VerticalDotScrollbar from '@/components/VerticalDotScrollbar';
 
 export default function Home() {
   return (
     <>
-      <HomePage />
-      <ProjectPage />
+      <VerticalDotScrollbar />
     </>
   );
 }
