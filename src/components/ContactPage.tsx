@@ -68,9 +68,14 @@ export default function ContactPage() {
     },
   ];
 
+  // Don't render anything until mounted to avoid hydration issues
+  if (!isMounted) {
+    return null;
+  }
+
   return (
     <div className="min-h-[calc(100vh-100px)] md:min-h-screen flex flex-col md:flex-row items-center justify-start md:justify-center bg-fixed bg-no-repeat bg-cover bg-center px-6 pt-10 pb-16 md:px-10 md:py-24 font-sans">
-      <div className="w-full max-w-6xl">
+      <div className="w-full max-w-8xl">
         <div className="text-center mb-4 md:mb-8">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-800 mb-2">
             Get In Touch
@@ -81,8 +86,7 @@ export default function ContactPage() {
             transition={{ duration: 0.6 }}
             className="block sm:hidden text-sm text-slate-600 max-w-md mx-auto leading-relaxed"
           >
-            Have a project in mind or want to collaborate? Feel free to reach
-            out.
+            want to collaborate? Feel free to reach out.
           </motion.p>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -95,57 +99,59 @@ export default function ContactPage() {
           </motion.p>
         </div>
 
-        <div className="grid lg:grid-cols-[30%_70%] gap-8 md:gap-12 max-w-8xl w-full">
-          {isMounted && (
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="space-y-8 w-full md:w-[400px] hidden lg:block"
-            >
-              <div className="bg-slate-50 rounded-2xl p-4 md:p-6 shadow-lg border border-slate-200">
-                <h2 className="text-2xl font-semibold text-slate-800 mb-6">
-                  Contact Information
-                </h2>
-                <div className="space-y-4">
-                  {contactInfo.map((info, index) => (
-                    <div key={index} className="flex items-center">
-                      <div className="w-12 h-12 bg-slate-200 rounded-lg flex items-center justify-center text-slate-700 mr-4">
-                        {info.icon}
-                      </div>
-                      <div>
-                        <p className="text-sm text-slate-600 font-medium">
-                          {info.label}
-                        </p>
-                        {info.href ? (
-                          <a
-                            href={info.href}
-                            className="text-slate-800 hover:text-blue-800 transition-colors duration-200"
-                          >
-                            {info.value}
-                          </a>
-                        ) : (
-                          <p className="text-slate-800">{info.value}</p>
-                        )}
-                      </div>
+        <div className="grid lg:grid-cols-[55%_80%] gap-8 md:gap-8 max-w-8xl w-full">
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="space-y-8 w-full hidden lg:block"
+          >
+            <div className="bg-slate-50 rounded-2xl p-4 md:p-6 shadow-lg border border-slate-200">
+              <h2 className="text-2xl font-semibold text-slate-800 mb-6">
+                Contact Information
+              </h2>
+              <div className="space-y-4">
+                {contactInfo.map((info, index) => (
+                  <div key={index} className="flex items-center">
+                    <div className="w-12 h-12 bg-slate-200 rounded-lg flex items-center justify-center text-slate-700 mr-4">
+                      {info.icon}
                     </div>
-                  ))}
-                </div>
+                    <div>
+                      <p className="text-sm text-slate-600 font-medium">
+                        {info.label}
+                      </p>
+                      {info.href ? (
+                        <a
+                          href={info.href}
+                          className="text-slate-800 hover:text-blue-800 transition-colors duration-200"
+                        >
+                          {info.value}
+                        </a>
+                      ) : (
+                        <p className="text-slate-800">{info.value}</p>
+                      )}
+                    </div>
+                  </div>
+                ))}
               </div>
-            </motion.div>
-          )}
+            </div>
+          </motion.div>
 
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="bg-slate-50 rounded-2xl p-4 md:p-6 shadow-lg border border-slate-200 w-full md:w-[600px] mx-auto"
+            className="bg-slate-50 rounded-2xl p-4 md:p-6 shadow-lg border border-slate-200 w-full mx-auto"
           >
             <h2 className="text-2xl md:text-2xl font-medium text-slate-800 mb-2">
               Send Me a Message
             </h2>
 
-            <form onSubmit={handleSubmit} className="space-y-3">
+            <form
+              onSubmit={handleSubmit}
+              className="space-y-3"
+              suppressHydrationWarning
+            >
               {/* Name */}
               <div>
                 <label
@@ -165,6 +171,7 @@ export default function ContactPage() {
                     value={formData.name}
                     onChange={handleInputChange}
                     required
+                    suppressHydrationWarning
                     className="block w-full pl-10 pr-3 py-1.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-500 focus:border-slate-500 transition-colors duration-200"
                     placeholder="Enter your full name"
                   />
@@ -190,6 +197,7 @@ export default function ContactPage() {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
+                    suppressHydrationWarning
                     className="block w-full pl-10 pr-3 py-1.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-500 focus:border-slate-500 transition-colors duration-200"
                     placeholder="Enter your email address"
                   />
@@ -215,6 +223,7 @@ export default function ContactPage() {
                     value={formData.message}
                     onChange={handleInputChange}
                     required
+                    suppressHydrationWarning
                     className="block w-full pl-10 pr-3 py-1.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-500 focus:border-slate-500 transition-colors duration-200 resize-none"
                     placeholder="Tell me about your project or just say hello!"
                   />
@@ -227,6 +236,7 @@ export default function ContactPage() {
                 disabled={!isFormValid() || isSubmitting}
                 whileHover={{ scale: isFormValid() ? 1.02 : 1 }}
                 whileTap={{ scale: isFormValid() ? 0.98 : 1 }}
+                suppressHydrationWarning
                 className={`w-full flex items-center justify-center px-6 py-3 rounded-lg font-medium text-white transition-colors duration-200 ${
                   !isFormValid() || isSubmitting
                     ? 'bg-slate-400 cursor-not-allowed'
