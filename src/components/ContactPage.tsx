@@ -37,10 +37,9 @@ export default function ContactPage() {
 
   const isFormValid = () => {
     return (
-      formData.name &&
-      formData.email &&
-      formData.message &&
-      isValidEmail(formData.email)
+      formData.name.trim() !== '' &&
+      isValidEmail(formData.email) &&
+      formData.message.trim() !== ''
     );
   };
 
@@ -52,8 +51,8 @@ export default function ContactPage() {
 
     setTimeout(() => {
       console.log('Form submitted:', formData);
-      setIsSubmitting(false);
       setFormData({ name: '', email: '', message: '' });
+      setIsSubmitting(false);
     }, 2000);
   };
 
@@ -78,10 +77,7 @@ export default function ContactPage() {
     },
   ];
 
-  // Don't render anything until mounted to avoid hydration issues
-  if (!isMounted) {
-    return null;
-  }
+  if (!isMounted) return null;
 
   return (
     <div className="min-h-[calc(100vh-100px)] md:min-h-screen flex flex-col md:flex-row items-center justify-start md:justify-center bg-fixed bg-no-repeat bg-cover bg-center px-6 pt-10 pb-16 md:px-10 md:py-24 font-sans">
@@ -110,7 +106,7 @@ export default function ContactPage() {
         </div>
 
         <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 max-w-6xl mx-auto">
-          {/* Contact Information - Takes 2 columns on large screens */}
+          {/* Contact Information */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -150,7 +146,7 @@ export default function ContactPage() {
             </div>
           </motion.div>
 
-          {/* Contact Form - Takes 3 columns on large screens */}
+          {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -161,11 +157,7 @@ export default function ContactPage() {
               Send Me a Message
             </h2>
 
-            <form
-              onSubmit={handleSubmit}
-              className="space-y-3"
-              suppressHydrationWarning
-            >
+            <form onSubmit={handleSubmit} className="space-y-3">
               {/* Name */}
               <div>
                 <label
@@ -185,7 +177,6 @@ export default function ContactPage() {
                     value={formData.name}
                     onChange={handleInputChange}
                     required
-                    suppressHydrationWarning
                     className="block w-full pl-10 pr-3 py-1.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-500 focus:border-slate-500 transition-colors duration-200"
                     placeholder="Enter your full name"
                   />
@@ -211,8 +202,11 @@ export default function ContactPage() {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    suppressHydrationWarning
-                    className="block w-full pl-10 pr-3 py-1.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-500 focus:border-slate-500 transition-colors duration-200"
+                    className={`block w-full pl-10 pr-3 py-1.5 border rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-500 focus:border-slate-500 transition-colors duration-200 ${
+                      formData.email && !isValidEmail(formData.email)
+                        ? 'border-red-500'
+                        : 'border-slate-300'
+                    }`}
                     placeholder="Enter your email address"
                   />
                 </div>
@@ -237,12 +231,7 @@ export default function ContactPage() {
                     value={formData.message}
                     onChange={handleInputChange}
                     required
-                    suppressHydrationWarning
-                    className={`block w-full pl-10 pr-3 py-1.5 border  rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-500 focus:border-slate-500 transition-colors duration-200 resize-none ${
-                      isValidEmail(formData.email)
-                        ? 'border-slate-300'
-                        : 'border-red-500'
-                    }`}
+                    className="block w-full pl-10 pr-3 py-1.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-500 focus:border-slate-500 transition-colors duration-200 resize-none"
                     placeholder="Tell me about your project or just say hello!"
                   />
                 </div>
@@ -254,7 +243,6 @@ export default function ContactPage() {
                 disabled={!isFormValid() || isSubmitting}
                 whileHover={{ scale: isFormValid() ? 1.02 : 1 }}
                 whileTap={{ scale: isFormValid() ? 0.98 : 1 }}
-                suppressHydrationWarning
                 className={`w-full flex items-center justify-center px-6 py-3 rounded-lg font-medium text-white transition-all duration-200 ${
                   !isFormValid() || isSubmitting
                     ? 'bg-slate-400 cursor-not-allowed'
