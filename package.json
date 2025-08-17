@@ -10,6 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@heroui/react": "^2.8.2",
     "axios": "^1.11.0",
     "lottie-react": "^2.4.1",
