@@ -30,8 +30,18 @@ export default function ContactPage() {
     }));
   };
 
+  const isValidEmail = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
   const isFormValid = () => {
-    return formData.name && formData.email && formData.message;
+    return (
+      formData.name &&
+      formData.email &&
+      formData.message &&
+      isValidEmail(formData.email)
+    );
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -75,7 +85,7 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-[calc(100vh-100px)] md:min-h-screen flex flex-col md:flex-row items-center justify-start md:justify-center bg-fixed bg-no-repeat bg-cover bg-center px-6 pt-10 pb-16 md:px-10 md:py-24 font-sans">
-      <div className="w-full max-w-8xl">
+      <div className="w-full max-w-7xl mx-auto">
         <div className="text-center mb-4 md:mb-8">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-800 mb-2">
             Get In Touch
@@ -86,34 +96,35 @@ export default function ContactPage() {
             transition={{ duration: 0.6 }}
             className="block sm:hidden text-sm text-slate-600 max-w-md mx-auto leading-relaxed"
           >
-            want to collaborate? Feel free to reach out.
+            Want to collaborate? Feel free to reach out.
           </motion.p>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="hidden sm:block text-lg text-slate-600 max-w-4xl mx-auto"
+            className="hidden sm:block text-lg text-slate-600 max-w-3xl mx-auto"
           >
             Thinking about a new project, a problem to solve, or just want to
             connect? Let&apos;s do it!
           </motion.p>
         </div>
 
-        <div className="grid lg:grid-cols-[55%_80%] gap-8 md:gap-8 max-w-8xl w-full">
+        <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 max-w-6xl mx-auto">
+          {/* Contact Information - Takes 2 columns on large screens */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="space-y-8 w-full hidden lg:block"
+            className="lg:col-span-2 space-y-8 hidden lg:block"
           >
-            <div className="bg-slate-50 rounded-2xl p-4 md:p-6 shadow-lg border border-slate-200">
+            <div className="bg-slate-50 rounded-2xl p-6 shadow-lg border border-slate-200 h-fit">
               <h2 className="text-2xl font-semibold text-slate-800 mb-6">
                 Contact Information
               </h2>
               <div className="space-y-4">
                 {contactInfo.map((info, index) => (
                   <div key={index} className="flex items-center">
-                    <div className="w-12 h-12 bg-slate-200 rounded-lg flex items-center justify-center text-slate-700 mr-4">
+                    <div className="w-12 h-12 bg-slate-200 rounded-lg flex items-center justify-center text-slate-700 mr-4 flex-shrink-0">
                       {info.icon}
                     </div>
                     <div>
@@ -123,12 +134,14 @@ export default function ContactPage() {
                       {info.href ? (
                         <a
                           href={info.href}
-                          className="text-slate-800 hover:text-blue-800 transition-colors duration-200"
+                          className="text-slate-800 hover:text-blue-800 transition-colors duration-200 break-words"
                         >
                           {info.value}
                         </a>
                       ) : (
-                        <p className="text-slate-800">{info.value}</p>
+                        <p className="text-slate-800 break-words">
+                          {info.value}
+                        </p>
                       )}
                     </div>
                   </div>
@@ -137,13 +150,14 @@ export default function ContactPage() {
             </div>
           </motion.div>
 
+          {/* Contact Form - Takes 3 columns on large screens */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="bg-slate-50 rounded-2xl p-4 md:p-6 shadow-lg border border-slate-200 w-full mx-auto"
+            className="lg:col-span-3 bg-slate-50 rounded-2xl p-4 md:p-6 shadow-lg border border-slate-200"
           >
-            <h2 className="text-2xl md:text-2xl font-medium text-slate-800 mb-2">
+            <h2 className="text-2xl font-medium text-slate-800 mb-2">
               Send Me a Message
             </h2>
 
@@ -224,7 +238,11 @@ export default function ContactPage() {
                     onChange={handleInputChange}
                     required
                     suppressHydrationWarning
-                    className="block w-full pl-10 pr-3 py-1.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-500 focus:border-slate-500 transition-colors duration-200 resize-none"
+                    className={`block w-full pl-10 pr-3 py-1.5 border  rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-500 focus:border-slate-500 transition-colors duration-200 resize-none ${
+                      isValidEmail(formData.email)
+                        ? 'border-slate-300'
+                        : 'border-red-500'
+                    }`}
                     placeholder="Tell me about your project or just say hello!"
                   />
                 </div>
@@ -237,10 +255,10 @@ export default function ContactPage() {
                 whileHover={{ scale: isFormValid() ? 1.02 : 1 }}
                 whileTap={{ scale: isFormValid() ? 0.98 : 1 }}
                 suppressHydrationWarning
-                className={`w-full flex items-center justify-center px-6 py-3 rounded-lg font-medium text-white transition-colors duration-200 ${
+                className={`w-full flex items-center justify-center px-6 py-3 rounded-lg font-medium text-white transition-all duration-200 ${
                   !isFormValid() || isSubmitting
                     ? 'bg-slate-400 cursor-not-allowed'
-                    : 'bg-slate-800 hover:bg-slate-700'
+                    : 'bg-slate-800 hover:bg-slate-700 shadow-lg hover:shadow-xl'
                 }`}
               >
                 {isSubmitting ? (
