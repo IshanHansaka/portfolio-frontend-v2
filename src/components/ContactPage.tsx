@@ -68,11 +68,21 @@ export default function ContactPage() {
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-800 mb-2">
             Get In Touch
           </h1>
+          {/* Short description for mobile */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-base sm:text-lg text-slate-600 max-w-4xl mx-auto"
+            className="block sm:hidden text-sm text-slate-600 max-w-md mx-auto leading-relaxed"
+          >
+            Have a project in mind or want to collaborate? Feel free to reach
+            out.
+          </motion.p>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="hidden sm:block text-lg text-slate-600 max-w-4xl mx-auto"
           >
             Thinking about a new project, a problem to solve, or just want to
             connect? Let&apos;s do it!
@@ -128,7 +138,7 @@ export default function ContactPage() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="bg-slate-50 rounded-2xl p-4 md:p-6 shadow-lg border border-slate-200 w-full md:w-[600px] mx-auto"
           >
-            <h2 className="text-2xl font-semibold text-slate-800 mb-2">
+            <h2 className="text-2xl md:text-2xl font-medium text-slate-800 mb-2">
               Send Me a Message
             </h2>
 
@@ -137,7 +147,7 @@ export default function ContactPage() {
               <div>
                 <label
                   htmlFor="name"
-                  className="block text-sm font-medium text-slate-700 mb-2"
+                  className="block text-sm font-medium text-slate-600 mb-2"
                 >
                   Your Name
                 </label>
@@ -162,7 +172,7 @@ export default function ContactPage() {
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-sm font-medium text-slate-700 mb-2"
+                  className="block text-sm font-medium text-slate-600 mb-2"
                 >
                   Your Email
                 </label>
@@ -187,7 +197,7 @@ export default function ContactPage() {
               <div>
                 <label
                   htmlFor="message"
-                  className="block text-sm font-medium text-slate-700 mb-2"
+                  className="block text-sm font-medium text-slate-600 mb-2"
                 >
                   Your Message
                 </label>
