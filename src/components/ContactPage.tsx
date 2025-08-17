@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Send, User, MessageCircle } from 'lucide-react';
 
@@ -12,6 +12,12 @@ export default function ContactPage() {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+
+  // This ensures client-only rendering for dynamic elements
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -27,13 +33,10 @@ export default function ContactPage() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
     setTimeout(() => {
       console.log('Form submitted:', formData);
       setIsSubmitting(false);
-      // Reset form
       setFormData({ name: '', email: '', message: '' });
-      // You can add success notification here
     }, 2000);
   };
 
@@ -77,58 +80,60 @@ export default function ContactPage() {
         </div>
 
         <div className="grid lg:grid-cols-[30%_70%] gap-8 md:gap-12 max-w-8xl w-full">
-          {/* Contact Information */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="space-y-8 w-full md:w-[400px] hidden lg:block"
-          >
-            <div className="bg-slate-50 rounded-2xl p-6 md:p-8 shadow-lg border border-slate-200">
-              <h2 className="text-2xl font-semibold text-slate-800 mb-6">
-                Contact Information
-              </h2>
+          {/* Contact Information (Client-only) */}
+          {isMounted && (
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="space-y-8 w-full md:w-[400px] hidden lg:block"
+            >
+              <div className="bg-slate-50 rounded-2xl p-4 md:p-6 shadow-lg border border-slate-200">
+                <h2 className="text-2xl font-semibold text-slate-800 mb-6">
+                  Contact Information
+                </h2>
 
-              <div className="space-y-4">
-                {contactInfo.map((info, index) => (
-                  <div key={index} className="flex items-center">
-                    <div className="w-12 h-12 bg-slate-200 rounded-lg flex items-center justify-center text-slate-700 mr-4">
-                      {info.icon}
+                <div className="space-y-4">
+                  {contactInfo.map((info, index) => (
+                    <div key={index} className="flex items-center">
+                      <div className="w-12 h-12 bg-slate-200 rounded-lg flex items-center justify-center text-slate-700 mr-4">
+                        {info.icon}
+                      </div>
+                      <div>
+                        <p className="text-sm text-slate-600 font-medium">
+                          {info.label}
+                        </p>
+                        {info.href ? (
+                          <a
+                            href={info.href}
+                            className="text-slate-800 hover:text-blue-600 transition-colors duration-200"
+                          >
+                            {info.value}
+                          </a>
+                        ) : (
+                          <p className="text-slate-800">{info.value}</p>
+                        )}
+                      </div>
                     </div>
-                    <div>
-                      <p className="text-sm text-slate-600 font-medium">
-                        {info.label}
-                      </p>
-                      {info.href ? (
-                        <a
-                          href={info.href}
-                          className="text-slate-800 hover:text-blue-600 transition-colors duration-200"
-                        >
-                          {info.value}
-                        </a>
-                      ) : (
-                        <p className="text-slate-800">{info.value}</p>
-                      )}
-                    </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          )}
 
           {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="bg-slate-50 rounded-2xl p-6 md:p-8 shadow-lg border border-slate-200 w-full md:w-[600px] mx-auto"
+            className="bg-slate-50 rounded-2xl p-4 md:p-6 shadow-lg border border-slate-200 w-full md:w-[600px] mx-auto"
           >
             <h2 className="text-2xl font-semibold text-slate-800 mb-2">
               Send Me a Message
             </h2>
 
-            <form onSubmit={handleSubmit} className="space-y-2">
-              {/* Name Field */}
+            <form onSubmit={handleSubmit} className="space-y-3">
+              {/* Name */}
               <div>
                 <label
                   htmlFor="name"
@@ -153,7 +158,7 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* Email Field */}
+              {/* Email */}
               <div>
                 <label
                   htmlFor="email"
@@ -178,7 +183,7 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* Message Field */}
+              {/* Message */}
               <div>
                 <label
                   htmlFor="message"
@@ -203,7 +208,7 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* Submit Button */}
+              {/* Submit */}
               <motion.button
                 type="submit"
                 disabled={isSubmitting}
