@@ -14,7 +14,7 @@ export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
 
-  // This ensures client-only rendering for dynamic elements
+  // Client-only rendering
   useEffect(() => {
     setIsMounted(true);
   }, []);
@@ -23,14 +23,21 @@ export default function ContactPage() {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
+
     setFormData((prev) => ({
       ...prev,
       [name]: value,
     }));
   };
 
+  const isFormValid = () => {
+    return formData.name && formData.email && formData.message;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!isFormValid()) return;
+
     setIsSubmitting(true);
 
     setTimeout(() => {
@@ -68,7 +75,6 @@ export default function ContactPage() {
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-800 mb-2">
             Get In Touch
           </h1>
-          {/* Short description for mobile */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -90,7 +96,6 @@ export default function ContactPage() {
         </div>
 
         <div className="grid lg:grid-cols-[30%_70%] gap-8 md:gap-12 max-w-8xl w-full">
-          {/* Contact Information (Client-only) */}
           {isMounted && (
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -102,7 +107,6 @@ export default function ContactPage() {
                 <h2 className="text-2xl font-semibold text-slate-800 mb-6">
                   Contact Information
                 </h2>
-
                 <div className="space-y-4">
                   {contactInfo.map((info, index) => (
                     <div key={index} className="flex items-center">
@@ -116,7 +120,7 @@ export default function ContactPage() {
                         {info.href ? (
                           <a
                             href={info.href}
-                            className="text-slate-800 hover:text-blue-600 transition-colors duration-200"
+                            className="text-slate-800 hover:text-blue-800 transition-colors duration-200"
                           >
                             {info.value}
                           </a>
@@ -131,7 +135,6 @@ export default function ContactPage() {
             </motion.div>
           )}
 
-          {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -221,11 +224,11 @@ export default function ContactPage() {
               {/* Submit */}
               <motion.button
                 type="submit"
-                disabled={isSubmitting}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                disabled={!isFormValid() || isSubmitting}
+                whileHover={{ scale: isFormValid() ? 1.02 : 1 }}
+                whileTap={{ scale: isFormValid() ? 0.98 : 1 }}
                 className={`w-full flex items-center justify-center px-6 py-3 rounded-lg font-medium text-white transition-colors duration-200 ${
-                  isSubmitting
+                  !isFormValid() || isSubmitting
                     ? 'bg-slate-400 cursor-not-allowed'
                     : 'bg-slate-800 hover:bg-slate-700'
                 }`}
