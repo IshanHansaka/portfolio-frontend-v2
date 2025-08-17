@@ -99,8 +99,8 @@ export default function VerticalDotScrollbar() {
       }
     };
 
-    document.body.style.overflow = 'hidden';
-    // document.body.classList.add('no-scroll');
+    // document.body.style.overflow = 'hidden';
+    document.body.classList.add('no-scroll');
 
     window.addEventListener('keydown', handleKeydown);
     window.addEventListener('wheel', handleWheel, { passive: false });
@@ -126,9 +126,9 @@ export default function VerticalDotScrollbar() {
             <li key={section.id}>
               <span
                 onClick={() => navigateToSection(index)}
-                className={`my-3.5 block w-3 h-3 rounded-full cursor-pointer transition-colors duration-300 ${
+                className={`my-3.5 block w-3 h-3 md:w-4 md:h-4 rounded-full cursor-pointer transition-colors duration-300 ${
                   currentSection === index
-                    ? 'bg-slate-900'
+                    ? 'bg-slate-900  outline-solid outline-3 outline-slate-300'
                     : 'bg-slate-300 hover:bg-slate-500'
                 }`}
                 aria-label={`Go to ${section.id}`}

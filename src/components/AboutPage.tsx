@@ -42,7 +42,7 @@ export default function AboutPage() {
   ];
 
   return (
-    <div className="min-h-[calc(100vh-100px)] md:min-h-screen flex flex-col items-center justify-start md:justify-center bg-fixed bg-no-repeat bg-cover bg-center px-4 pt-8 pb-12 sm:px-6 md:px-10 md:py-24 font-sans">
+    <div className="min-h-[calc(100vh-100px)] md:min-h-screen flex flex-col items-center justify-start md:justify-center bg-fixed bg-no-repeat bg-cover bg-center px-4 pt-6 pb-12 sm:px-6 md:px-10 md:py-24 font-sans">
       <div className="w-full max-w-6xl">
         <div className="text-center mb-3 md:mb-8">
           <h1 className="text-3xl sm:text-3xl md:text-5xl font-bold text-slate-800 md:mb-4">
@@ -88,12 +88,12 @@ export default function AboutPage() {
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-slate-50 rounded-2xl p-4 sm:p-6 md:p-8 shadow-lg border border-slate-100 cursor-default mb-2"
+            className="bg-slate-50 rounded-2xl p-4 sm:p-6 md:p-8 shadow-xl border-2 border-slate-100 cursor-default mb-2"
           >
             <div className="flex items-center mb-4">
               <BookOpen className="text-slate-700 mr-3 shrink-0" size={22} />
@@ -129,7 +129,7 @@ export default function AboutPage() {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="bg-slate-50 rounded-2xl p-4 sm:p-6 md:p-8 shadow-lg border border-slate-100 cursor-default"
+            className="bg-slate-50 rounded-2xl p-4 sm:p-6 md:p-8 shadow-xl border-2 border-slate-100 cursor-default"
           >
             <div className="flex items-center mb-4">
               <Users className="text-slate-700 mr-3 shrink-0" size={22} />

@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { X, Bot } from 'lucide-react';
 import ChatModal from './ChatModal';
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 
 export default function Header() {
   const [isChatOpen, setIsChatOpen] = useState(false);
@@ -36,7 +37,17 @@ export default function Header() {
                   {isChatOpen ? (
                     <X className="w-4 h-4 md:w-6 md:h-6 text-white" />
                   ) : (
-                    <Bot className="w-4 h-4 md:w-6 md:h-6 text-white" />
+                    <motion.div
+                      animate={{ rotate: [0, 10, -10, 0] }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        repeatDelay: 2,
+                        ease: 'easeInOut',
+                      }}
+                    >
+                      <Bot className="w-4 h-4 md:w-6 md:h-6 text-white" />
+                    </motion.div>
                   )}
                 </button>
               </div>

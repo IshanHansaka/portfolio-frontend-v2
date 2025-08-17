@@ -138,7 +138,7 @@ export default function ContactPage() {
               <div className="space-y-4">
                 {contactInfo.map((info, index) => (
                   <div key={index} className="flex items-center">
-                    <div className="w-12 h-12 bg-slate-200 rounded-lg flex items-center justify-center text-slate-700 mr-4 flex-shrink-0">
+                    <div className="w-12 h-12 bg-slate-200 rounded-lg flex items-center justify-center text-slate-800 mr-4 flex-shrink-0">
                       {info.icon}
                     </div>
                     <div>
