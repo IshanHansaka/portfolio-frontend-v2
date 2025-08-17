@@ -60,7 +60,7 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-[calc(100vh-100px)] md:min-h-screen flex flex-col md:flex-row items-center justify-start md:justify-center bg-fixed bg-no-repeat bg-cover bg-center px-6 pt-10 pb-16 md:px-10 md:py-24 font-sans">
-      <div className="w-full max-w-8xl">
+      <div className="w-full max-w-6xl">
         <div className="text-center mb-4 md:mb-8">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-800 mb-2">
             Get In Touch
@@ -76,15 +76,14 @@ export default function ContactPage() {
           </motion.p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8 md:gap-12">
+        <div className="grid lg:grid-cols-[30%_70%] gap-8 md:gap-12 max-w-8xl w-full">
           {/* Contact Information */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="space-y-8"
+            className="space-y-8 w-full md:w-[400px] hidden lg:block"
           >
-            {/* Contact Details */}
             <div className="bg-slate-50 rounded-2xl p-6 md:p-8 shadow-lg border border-slate-200">
               <h2 className="text-2xl font-semibold text-slate-800 mb-6">
                 Contact Information
@@ -122,7 +121,7 @@ export default function ContactPage() {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="bg-slate-50 rounded-2xl p-6 md:p-8 shadow-lg border border-slate-200"
+            className="bg-slate-50 rounded-2xl p-6 md:p-8 shadow-lg border border-slate-200 w-full md:w-[600px] mx-auto"
           >
             <h2 className="text-2xl font-semibold text-slate-800 mb-2">
               Send Me a Message
@@ -194,7 +193,7 @@ export default function ContactPage() {
                   <textarea
                     id="message"
                     name="message"
-                    rows={5}
+                    rows={3}
                     value={formData.message}
                     onChange={handleInputChange}
                     required
