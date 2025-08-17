@@ -5,7 +5,7 @@ export default function HomePage() {
   return (
     <div className="min-h-[calc(100vh-100px)] md:min-h-screen flex flex-col md:flex-row items-center justify-start md:justify-center bg-fixed bg-no-repeat bg-cover bg-center px-6 pt-10 pb-16 md:px-10 md:py-24 font-sans">
       <div className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-1">
-        <div className="flex flex-col items-center md:items-start text-center md:text-left">
+        <div className="flex flex-col items-center md:items-start text-center md:text-left cursor-default">
           <h4 className="font-poppins text-slate-800 pl-[3px] text-1xl md:text-3xl flex-wrap">
             Undergraduate at University of Moratuwa
           </h4>

@@ -62,7 +62,7 @@ export default function BlogPage() {
             Blogs
           </h1>
           <p className="text-sm md:text-lg text-slate-600 max-w-2xl mx-auto">
-            Explore some of my recent blogs:{' '}
+            Check out my latest blog posts:{' '}
             <Link
               href="https://medium.com/@ishanhansakasilva"
               className="text-blue-600 hover:underline cursor-pointer"
@@ -102,7 +102,7 @@ export default function BlogPage() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -50 }}
                 transition={{ duration: 0.6, ease: 'easeInOut' }}
-                className="px-6 py-4 sm:p-8 md:px-12 md:py-4 flex flex-col justify-center"
+                className="px-6 py-12 sm:p-8 md:px-12 md:py-4 flex flex-col justify-center"
               >
                 <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-800 mb-3 text-center md:text-left">
                   {currentBlog.title}
@@ -115,9 +115,16 @@ export default function BlogPage() {
                 <div className="mb-4">
                   <div className="flex flex-wrap gap-2 justify-center md:justify-start">
                     {currentBlog.date && (
-                      <span className="px-3 py-1.5 rounded-full text-sm bg-slate-200 text-slate-700 border border-slate-300 font-medium cursor-default">
+                      <span className="px-3 py-1.5 rounded-full text-sm bg-slate-200 text-slate-700 border border-slate-200 font-medium cursor-default">
                         Published:{' '}
-                        {new Date(currentBlog.date).toLocaleDateString()}
+                        {new Date(currentBlog.date).toLocaleDateString(
+                          'en-US',
+                          {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric',
+                          }
+                        )}
                       </span>
                     )}
                   </div>

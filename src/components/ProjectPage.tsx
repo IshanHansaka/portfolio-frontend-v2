@@ -102,7 +102,7 @@ export default function ProjectPage() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -50 }}
                 transition={{ duration: 0.6, ease: 'easeInOut' }}
-                className="px-6 py-4 sm:p-8 md:px-12 md:py-4 flex flex-col justify-center"
+                className="px-6 py-10 md:px-12 md:py-4 flex flex-col items-center justify-center"
               >
                 <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-800 mb-3 text-center md:text-left">
                   {currentProject.name}

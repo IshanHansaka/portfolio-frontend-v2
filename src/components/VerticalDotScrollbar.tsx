@@ -5,6 +5,7 @@ import Home from '@/components/HomePage';
 import Project from '@/components/ProjectPage';
 import AboutPage from './AboutPage';
 import BlogPage from './BlogPage';
+import ContactPage from './ContactPage';
 
 export default function VerticalDotScrollbar() {
   const sections = React.useMemo(
@@ -13,6 +14,7 @@ export default function VerticalDotScrollbar() {
       { id: 'about', component: <AboutPage /> },
       { id: 'project', component: <Project /> },
       { id: 'blog', component: <BlogPage /> },
+      { id: 'contact', component: <ContactPage /> },
     ],
     []
   );

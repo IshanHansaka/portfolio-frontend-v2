@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { BookOpen, Users } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function AboutPage() {
   const experiences = [
@@ -55,7 +56,14 @@ export default function AboutPage() {
             className="block sm:hidden text-sm text-slate-600 max-w-md mx-auto leading-relaxed px-2"
           >
             Passionate IT undergraduate eager to learn and contribute to
-            real-world projects.
+            real-world projects.{' '}
+            <Link
+              href="https://www.linkedin.com/in/ishanhansakasilva/"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:underline"
+            >
+              Connect with me
+            </Link>
           </motion.p>
 
           <motion.p
@@ -69,7 +77,14 @@ export default function AboutPage() {
             software engineering, who learns new technologies quickly and excels
             in collaborative team environments. Currently seeking opportunities
             to contribute to real-world projects and gain hands-on industry
-            experience.
+            experience.{' '}
+            <Link
+              href="https://www.linkedin.com/in/ishanhansakasilva/"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:underline"
+            >
+              Connect with me
+            </Link>
           </motion.p>
         </div>
 
@@ -87,7 +102,7 @@ export default function AboutPage() {
               </h2>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-4 pl-2">
               {education.map((edu, index) => (
                 <div className="flex items-center gap-3 sm:gap-4" key={index}>
                   <Image
@@ -123,7 +138,7 @@ export default function AboutPage() {
               </h2>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-4 pl-2">
               {experiences.map((exp, index) => (
                 <div className="flex items-center gap-3 sm:gap-4" key={index}>
                   <Image
