@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Send, User, MessageCircle } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -48,12 +49,29 @@ export default function ContactPage() {
     if (!isFormValid()) return;
 
     setIsSubmitting(true);
+    console.log('Form submitted:', formData);
 
-    setTimeout(() => {
-      console.log('Form submitted:', formData);
+    const templateParams = {
+      name: formData.name,
+      email: formData.email,
+      message: formData.message,
+    };
+
+    try {
+      await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        templateParams,
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+      );
+
+      console.log('Message sent successfully!');
       setFormData({ name: '', email: '', message: '' });
+    } catch (error) {
+      console.error('EmailJS error:', error);
+    } finally {
       setIsSubmitting(false);
-    }, 2000);
+    }
   };
 
   const contactInfo = [
