@@ -34,6 +34,8 @@ export async function PATCH(
 ) {
   try {
     const { id } = await params;
+    await connectMongoDB();
+
     const project = await Project.findById(id);
     if (!project) {
       return NextResponse.json(
@@ -43,7 +45,9 @@ export async function PATCH(
     }
 
     const updatedData = await request.json();
-    const updatedProject = await Project.findByIdAndUpdate(id, updatedData, { new: true });
+    const updatedProject = await Project.findByIdAndUpdate(id, updatedData, {
+      new: true,
+    });
     return NextResponse.json(
       { message: 'Project updated successfully', project: updatedProject },
       { status: 200 }
