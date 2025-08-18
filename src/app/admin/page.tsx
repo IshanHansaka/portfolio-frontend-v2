@@ -144,7 +144,8 @@ export default function AdminPortal() {
         throw new Error('Failed to create project');
       }
 
-      const result = await response.json();
+      const data = await response.json();
+      const result = data.project;
       setProjects((prev) => [...prev, result]);
       showSuccess('Project created successfully!');
 
@@ -192,7 +193,8 @@ export default function AdminPortal() {
         throw new Error('Failed to update project');
       }
 
-      const result = await response.json();
+      const data = await response.json();
+      const result = data.project;
       setProjects((prev) =>
         prev.map((project) =>
           project._id === modifyProject.id ? result : project
@@ -219,15 +221,6 @@ export default function AdminPortal() {
   };
 
   const deleteProject = async () => {
-    if (!removeProject.id) {
-      alert('Please select a project to delete');
-      return;
-    }
-
-    if (!confirm('Are you sure you want to delete this project?')) {
-      return;
-    }
-
     setIsLoading(true);
     try {
       const response = await fetch(`/api/projects/${removeProject.id}`, {
@@ -272,7 +265,8 @@ export default function AdminPortal() {
         throw new Error('Failed to create blog');
       }
 
-      const result = await response.json();
+      const data = await response.json();
+      const result = data.blog;
       setBlogs((prev) => [...prev, result]);
       showSuccess('Blog created successfully!');
 
@@ -318,7 +312,8 @@ export default function AdminPortal() {
         throw new Error('Failed to update blog');
       }
 
-      const result = await response.json();
+      const data = await response.json();
+      const result = data.blog;
       setBlogs((prev) =>
         prev.map((blog) => (blog._id === modifyBlog.id ? result : blog))
       );
@@ -342,15 +337,6 @@ export default function AdminPortal() {
   };
 
   const deleteBlog = async () => {
-    if (!removeBlog.id) {
-      alert('Please select a blog to delete');
-      return;
-    }
-
-    if (!confirm('Are you sure you want to delete this blog?')) {
-      return;
-    }
-
     setIsLoading(true);
     try {
       const response = await fetch(`/api/blogs/${removeBlog.id}`, {
@@ -439,7 +425,7 @@ export default function AdminPortal() {
             )}
             <ul className="list-disc pl-5">
               {projects.map((project) => (
-                <li key={project.name} className="mb-4">
+                <li key={project._id} className="mb-4">
                   <h3 className="font-semibold text-lg">{project.name}</h3>
                   <p>{project.description}</p>
 
@@ -482,7 +468,7 @@ export default function AdminPortal() {
             )}
             <ul className="list-disc pl-5">
               {blogs.map((blog) => (
-                <li key={blog.title} className="mb-4">
+                <li key={blog._id} className="mb-4">
                   <h3 className="font-semibold text-lg">{blog.title}</h3>
                   <p>{blog.content}</p>
                   <p className="text-slate-600 text-sm">{blog.date}</p>
@@ -809,7 +795,7 @@ export default function AdminPortal() {
                   <button
                     type="submit"
                     disabled={isLoading}
-                    className="bg-red-600 text-white px-4 py-2 rounded w-full disabled:bg-red-300"
+                    className="bg-slate-600 text-white px-4 py-2 rounded w-full disabled:bg-slate-300"
                   >
                     {isLoading ? 'Deleting...' : 'Delete Project'}
                   </button>
@@ -837,7 +823,7 @@ export default function AdminPortal() {
                       setNewBlog({ ...newBlog, title: e.target.value })
                     }
                     placeholder="Blog Title"
-                    className="w-full p-2 border border-gray-300 rounded"
+                    className="w-full p-2 border border-slate-300 rounded"
                     required
                   />
                   <textarea
@@ -846,7 +832,7 @@ export default function AdminPortal() {
                       setNewBlog({ ...newBlog, content: e.target.value })
                     }
                     placeholder="Blog Content"
-                    className="w-full p-2 border border-gray-300 rounded"
+                    className="w-full p-2 border border-slate-300 rounded"
                   />
                   <input
                     type="date"
@@ -854,7 +840,7 @@ export default function AdminPortal() {
                     onChange={(e) =>
                       setNewBlog({ ...newBlog, date: e.target.value })
                     }
-                    className="w-full p-2 border border-gray-300 rounded"
+                    className="w-full p-2 border border-slate-300 rounded"
                     required
                   />
                   <input
@@ -864,7 +850,7 @@ export default function AdminPortal() {
                       setNewBlog({ ...newBlog, medium_link: e.target.value })
                     }
                     placeholder="Medium Link"
-                    className="w-full p-2 border border-gray-300 rounded"
+                    className="w-full p-2 border border-slate-300 rounded"
                   />
                   <input
                     type="text"
@@ -873,12 +859,12 @@ export default function AdminPortal() {
                       setNewBlog({ ...newBlog, imageUrl: e.target.value })
                     }
                     placeholder="Image URL"
-                    className="w-full p-2 border border-gray-300 rounded"
+                    className="w-full p-2 border border-slate-300 rounded"
                   />
                   <button
                     type="submit"
                     disabled={isLoading}
-                    className="bg-green-500 text-white px-4 py-2 rounded w-full disabled:bg-green-300"
+                    className="bg-slate-500 text-white px-4 py-2 rounded w-full disabled:bg-slate-300"
                   >
                     {isLoading ? 'Creating...' : 'Create Blog'}
                   </button>
@@ -902,7 +888,7 @@ export default function AdminPortal() {
                         populateModifyBlog(e.target.value);
                       }
                     }}
-                    className="w-full p-2 border border-gray-300 rounded"
+                    className="w-full p-2 border border-slate-300 rounded"
                   >
                     <option value="">Select Blog</option>
                     {blogs.map((blog) => (
@@ -918,7 +904,7 @@ export default function AdminPortal() {
                       setModifyBlog({ ...modifyBlog, title: e.target.value })
                     }
                     placeholder="New Blog Title"
-                    className="w-full p-2 border border-gray-300 rounded"
+                    className="w-full p-2 border border-slate-300 rounded"
                   />
                   <textarea
                     value={modifyBlog.content}
@@ -926,7 +912,7 @@ export default function AdminPortal() {
                       setModifyBlog({ ...modifyBlog, content: e.target.value })
                     }
                     placeholder="New Blog Content"
-                    className="w-full p-2 border border-gray-300 rounded"
+                    className="w-full p-2 border border-slate-300 rounded"
                   />
                   <input
                     type="date"
@@ -934,7 +920,7 @@ export default function AdminPortal() {
                     onChange={(e) =>
                       setModifyBlog({ ...modifyBlog, date: e.target.value })
                     }
-                    className="w-full p-2 border border-gray-300 rounded"
+                    className="w-full p-2 border border-slate-300 rounded"
                   />
                   <input
                     type="text"
@@ -946,7 +932,7 @@ export default function AdminPortal() {
                       })
                     }
                     placeholder="New Medium Link"
-                    className="w-full p-2 border border-gray-300 rounded"
+                    className="w-full p-2 border border-slate-300 rounded"
                   />
                   <input
                     type="text"
@@ -955,7 +941,7 @@ export default function AdminPortal() {
                       setModifyBlog({ ...modifyBlog, imageUrl: e.target.value })
                     }
                     placeholder="New Image URL"
-                    className="w-full p-2 border border-gray-300 rounded"
+                    className="w-full p-2 border border-slate-300 rounded"
                   />
                   <button
                     type="submit"
@@ -979,7 +965,7 @@ export default function AdminPortal() {
                   <select
                     value={removeBlog.id}
                     onChange={(e) => setRemoveBlog({ id: e.target.value })}
-                    className="w-full p-2 border border-gray-300 rounded"
+                    className="w-full p-2 border border-slate-300 rounded"
                   >
                     <option value="">Select Blog to Delete</option>
                     {blogs.map((blog) => (
