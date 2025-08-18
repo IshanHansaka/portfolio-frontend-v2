@@ -529,7 +529,7 @@ export default function AdminPortal() {
             <div className="flex items-end">
               <button
                 onClick={handleLogout}
-                className="btn bg-slate-500 text-white px-4 py-2 rounded"
+                className="btn bg-slate-500 text-white px-4 py-2 rounded cursor-pointer"
               >
                 Logout
               </button>
@@ -621,7 +621,7 @@ export default function AdminPortal() {
                       <button
                         type="button"
                         onClick={() => removeTool(idx, true)}
-                        className="bg-slate-800 text-white px-2 rounded"
+                        className="bg-slate-800 text-white px-20 rounded cursor-pointer"
                       >
                         Remove
                       </button>
@@ -630,14 +630,14 @@ export default function AdminPortal() {
                   <button
                     type="button"
                     onClick={() => addTool(true)}
-                    className="bg-slate-800 text-white px-4 py-2 rounded w-full"
+                    className="bg-slate-800 text-white px-4 py-2 rounded w-full  cursor-pointer"
                   >
                     Add Tool
                   </button>
                   <button
                     type="submit"
                     disabled={isLoading}
-                    className="bg-slate-800 text-white px-4 py-2 rounded w-full disabled:bg-slate-400 transition-all duration-200"
+                    className="bg-slate-800 text-white px-4 py-2 rounded cursor-pointer w-full disabled:bg-slate-400 transition-all duration-200"
                   >
                     {isLoading ? 'Creating...' : 'Create Project'}
                   </button>
@@ -748,7 +748,7 @@ export default function AdminPortal() {
                       <button
                         type="button"
                         onClick={() => removeTool(idx, false)}
-                        className="bg-slate-800 text-white px-2 rounded"
+                        className="bg-slate-800 text-white px-20 rounded cursor-pointer"
                       >
                         Remove
                       </button>
@@ -757,14 +757,14 @@ export default function AdminPortal() {
                   <button
                     type="button"
                     onClick={() => addTool(false)}
-                    className="bg-slate-800 text-white px-4 py-2 rounded w-full"
+                    className="bg-slate-800 text-white px-4 py-2 rounded w-full cursor-pointer"
                   >
                     Add Tool
                   </button>
                   <button
                     type="submit"
                     disabled={isLoading}
-                    className="bg-slate-800 text-white px-4 py-2 rounded w-full disabled:bg-slate-400"
+                    className="bg-slate-800 text-white px-4 py-2 rounded cursor-pointer w-full disabled:bg-slate-400"
                   >
                     {isLoading ? 'Updating...' : 'Update Project'}
                   </button>
@@ -795,7 +795,7 @@ export default function AdminPortal() {
                   <button
                     type="submit"
                     disabled={isLoading}
-                    className="bg-slate-600 text-white px-4 py-2 rounded w-full disabled:bg-slate-300"
+                    className="bg-slate-600 text-white px-4 py-2 cursor-pointer rounded w-full disabled:bg-slate-300"
                   >
                     {isLoading ? 'Deleting...' : 'Delete Project'}
                   </button>
@@ -864,7 +864,7 @@ export default function AdminPortal() {
                   <button
                     type="submit"
                     disabled={isLoading}
-                    className="bg-slate-500 text-white px-4 py-2 rounded w-full disabled:bg-slate-300"
+                    className="bg-slate-500 text-white px-4 py-2 cursor-pointer rounded w-full disabled:bg-slate-300"
                   >
                     {isLoading ? 'Creating...' : 'Create Blog'}
                   </button>
@@ -946,7 +946,7 @@ export default function AdminPortal() {
                   <button
                     type="submit"
                     disabled={isLoading}
-                    className="bg-slate-500 text-white px-4 py-2 rounded w-full disabled:bg-slate-300"
+                    className="bg-slate-500 text-white px-4 py-2 cursor-pointer rounded w-full disabled:bg-slate-300"
                   >
                     {isLoading ? 'Updating...' : 'Update Blog'}
                   </button>
@@ -977,7 +977,7 @@ export default function AdminPortal() {
                   <button
                     type="submit"
                     disabled={isLoading}
-                    className="bg-slate-600 text-white px-4 py-2 rounded w-full disabled:bg-slate-300"
+                    className="bg-slate-600 text-white px-4 py-2 cursor-pointer rounded w-full disabled:bg-slate-300"
                   >
                     {isLoading ? 'Deleting...' : 'Delete Blog'}
                   </button>
