@@ -8,6 +8,9 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 
 export default function AdminPortal() {
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const [password, setPassword] = useState<string>('');
+
   const [selectedEntity, setSelectedEntity] = useState<'project' | 'blog'>(
     'project'
   );
@@ -82,13 +85,6 @@ export default function AdminPortal() {
         ...prev,
         tools: prev.tools.filter((_, i) => i !== index),
       }));
-    }
-  };
-
-  const handleLogout = () => {
-    if (typeof window !== 'undefined') {
-      localStorage.removeItem('portfolioAdmin');
-      window.location.reload();
     }
   };
 
@@ -396,6 +392,71 @@ export default function AdminPortal() {
 
     getAllBlogs();
   }, []);
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const res = await fetch('/api/auth/check', { credentials: 'include' });
+        const data = await res.json();
+        setIsAuthenticated(data.authenticated);
+      } catch (err) {
+        setIsAuthenticated(false);
+        console.log('Error:', err);
+      }
+    };
+    checkAuth();
+  }, []);
+
+  const handleLogin = async () => {
+    try {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password }),
+        credentials: 'include', // important
+      });
+
+      if (!res.ok) throw new Error('Invalid password');
+
+      // Directly set authenticated state
+      setIsAuthenticated(true);
+    } catch (err) {
+      console.log('Error:', err);
+      alert('Invalid password');
+    }
+  };
+
+  const handleLogout = async () => {
+    await fetch('/api/auth/logout', { method: 'POST' });
+    setIsAuthenticated(false);
+  };
+
+  if (!isAuthenticated) {
+    return (
+      <div className="container mx-auto h-[100vh]">
+        <div className="flex justify-center items-center h-full">
+          <div className="py-6 px-10 shadow-2xl rounded-2xl font-sans space-y-4">
+            <h1 className="text-3xl font-bold text-slate-800">
+              Login: Admin Portal
+            </h1>
+            <input
+              type="text"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Password"
+              className="p-2 border-2 border-slate-300 rounded w-full"
+            />
+            <button
+              onClick={handleLogin}
+              className="bg-slate-800 cursor-pointer font-semibold text-white py-2 px-4 rounded w-full border-3 border-slate-800 hover:bg-white hover:text-slate-800"
+            >
+              Login
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="container mx-auto p-4">
