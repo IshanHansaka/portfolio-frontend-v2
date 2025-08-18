@@ -1,5 +1,11 @@
 'use client';
-import { useState } from 'react';
+
+import { fetchAllBlogs } from '@/service/blogService';
+import { fetchAllProjects } from '@/service/projectService';
+import { Blog } from '@/types/BlogType';
+import { Project } from '@/types/ProjectType';
+import Link from 'next/link';
+import { useState, useEffect } from 'react';
 
 export default function AdminPortal() {
   const [selectedEntity, setSelectedEntity] = useState<'project' | 'blog'>(
@@ -10,7 +16,7 @@ export default function AdminPortal() {
   >('create');
 
   // Projects state
-  const [projects, setProjects] = useState<any[]>([]);
+  const [projects, setProjects] = useState<Project[]>([]);
   const [pendingProject, setPendingProject] = useState(false);
   const [errorProject, setErrorProject] = useState(false);
   const [newProject, setNewProject] = useState({
@@ -18,6 +24,8 @@ export default function AdminPortal() {
     description: '',
     github_link: '',
     tools: [''],
+    imageURL: '',
+    live_link: '',
   });
   const [modifyProject, setModifyProject] = useState({
     id: '',
@@ -25,11 +33,13 @@ export default function AdminPortal() {
     description: '',
     github_link: '',
     tools: [''],
+    imageURL: '',
+    live_link: '',
   });
   const [removeProject, setRemoveProject] = useState({ id: '' });
 
   // Blogs state
-  const [blogs, setBlogs] = useState<any[]>([]);
+  const [blogs, setBlogs] = useState<Blog[]>([]);
   const [pendingBlog, setPendingBlog] = useState(false);
   const [errorBlog, setErrorBlog] = useState(false);
   const [newBlog, setNewBlog] = useState({
@@ -37,6 +47,7 @@ export default function AdminPortal() {
     content: '',
     date: '',
     medium_link: '',
+    imageUrl: '',
   });
   const [modifyBlog, setModifyBlog] = useState({
     id: '',
@@ -44,6 +55,7 @@ export default function AdminPortal() {
     content: '',
     date: '',
     medium_link: '',
+    imageUrl: '',
   });
   const [removeBlog, setRemoveBlog] = useState({ id: '' });
 
@@ -62,21 +74,55 @@ export default function AdminPortal() {
   const updateBlog = () => console.log('Update Blog', modifyBlog);
   const deleteBlog = () => console.log('Delete Blog', removeBlog);
 
+  useEffect(() => {
+    const getAllProjects = async () => {
+      try {
+        setPendingProject(true);
+        const data = await fetchAllProjects();
+        setProjects(data);
+      } catch (error) {
+        console.error('Error fetching projects:', error);
+        setErrorProject(true);
+      } finally {
+        setPendingProject(false);
+      }
+    };
+
+    getAllProjects();
+  }, []);
+
+  useEffect(() => {
+    const getAllBlogs = async () => {
+      try {
+        setPendingBlog(true);
+        const data = await fetchAllBlogs();
+        setBlogs(data);
+      } catch (error) {
+        console.error('Error fetching blogs:', error);
+        setErrorBlog(true);
+      } finally {
+        setPendingBlog(false);
+      }
+    };
+
+    getAllBlogs();
+  }, []);
+
   return (
     <div className="container mx-auto p-4">
-      <div className="flex justify-center items-center">
+      <div className="flex justify-center items-center font-sans">
         <h1 className="text-5xl font-bold mb-10 underline">Admin Portal</h1>
       </div>
 
       {/* Two-column layout */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-14 font-sans">
         {/* Left Column: Projects and Blogs */}
         <div className="col-span-3">
           {/* Projects */}
           <div className="mb-10">
-            <h2 className="text-2xl font-bold mb-4">Projects</h2>
+            <h2 className="text-3xl font-semibold mb-4">Projects</h2>
             {pendingProject && (
-              <div className="text-gray-500">Loading projects...</div>
+              <div className="text-slate-500">Loading projects...</div>
             )}
             {errorProject && (
               <div className="text-red-500">Error 404 not found</div>
@@ -84,11 +130,25 @@ export default function AdminPortal() {
             <ul className="list-disc pl-5">
               {projects.map((project) => (
                 <li key={project.name} className="mb-4">
-                  <h3 className="font-semibold">{project.name}</h3>
+                  <h3 className="font-semibold text-lg">{project.name}</h3>
                   <p>{project.description}</p>
-                  <a href={project.github_link} className="text-blue-600">
+
+                  <Link href={project.github_link} className="text-blue-600">
                     {project.github_link}
-                  </a>
+                  </Link>
+                  <br />
+                  <Link
+                    href={project.imageURL}
+                    className="text-slate-600 underline"
+                  >
+                    view image
+                  </Link>
+                  <br />
+                  {project.live_link && (
+                    <Link href={project.live_link} className="text-blue-600">
+                      {project.live_link}
+                    </Link>
+                  )}
                   <ul className="flex flex-wrap mt-1">
                     {project.tools.map((tool: string, idx: number) => (
                       <li key={idx} className="inline-block mr-4">
@@ -105,7 +165,7 @@ export default function AdminPortal() {
           <div className="mb-10">
             <h2 className="text-2xl font-bold mb-4">Blogs</h2>
             {pendingBlog && (
-              <div className="text-gray-500">Loading blogs...</div>
+              <div className="text-slate-500">Loading blogs...</div>
             )}
             {errorBlog && (
               <div className="text-red-500">Error 404 not found</div>
@@ -113,12 +173,19 @@ export default function AdminPortal() {
             <ul className="list-disc pl-5">
               {blogs.map((blog) => (
                 <li key={blog.title} className="mb-4">
-                  <h3 className="font-semibold">{blog.title}</h3>
+                  <h3 className="font-semibold text-lg">{blog.title}</h3>
                   <p>{blog.content}</p>
-                  <p className="text-gray-600 text-sm">{blog.date}</p>
-                  <a href={blog.medium_link} className="text-blue-600">
+                  <p className="text-slate-600 text-sm">{blog.date}</p>
+                  <Link
+                    href={blog.imageUrl}
+                    className="text-slate-600 underline"
+                  >
+                    view image
+                  </Link>
+                  <br />
+                  <Link href={blog.medium_link} className="text-blue-600">
                     {blog.medium_link}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -138,7 +205,7 @@ export default function AdminPortal() {
                   setSelectedEntity(e.target.value as 'project' | 'blog')
                 }
                 id="entity"
-                className="w-full p-2 border border-gray-300 rounded"
+                className="w-full p-2 border border-slate-300 rounded"
               >
                 <option value="project">Project</option>
                 <option value="blog">Blog</option>
@@ -156,7 +223,7 @@ export default function AdminPortal() {
                   )
                 }
                 id="action"
-                className="w-full p-2 border border-gray-300 rounded"
+                className="w-full p-2 border border-slate-300 rounded"
               >
                 <option value="create">Create</option>
                 <option value="update">Update</option>
@@ -166,7 +233,7 @@ export default function AdminPortal() {
             <div className="flex items-end">
               <button
                 onClick={handleLogout}
-                className="btn bg-red-500 text-white px-4 py-2 rounded"
+                className="btn bg-slate-500 text-white px-4 py-2 rounded"
               >
                 Logout
               </button>
@@ -184,7 +251,7 @@ export default function AdminPortal() {
                   }}
                   className="space-y-4"
                 >
-                  <h2 className="text-xl font-bold">Create New Project</h2>
+                  <h2 className="text-xl font-semibold">Create New Project</h2>
                   <input
                     type="text"
                     value={newProject.name}
@@ -192,7 +259,7 @@ export default function AdminPortal() {
                       setNewProject({ ...newProject, name: e.target.value })
                     }
                     placeholder="Project Name"
-                    className="w-full p-2 border border-gray-300 rounded"
+                    className="w-full p-2 border border-slate-300 rounded"
                     required
                   />
                   <textarea
@@ -204,7 +271,31 @@ export default function AdminPortal() {
                       })
                     }
                     placeholder="Project Description"
-                    className="w-full p-2 border border-gray-300 rounded"
+                    className="w-full p-2 border border-slate-300 rounded"
+                  />
+                  <input
+                    type="text"
+                    value={newProject.imageURL}
+                    onChange={(e) =>
+                      setNewProject({
+                        ...newProject,
+                        imageURL: e.target.value,
+                      })
+                    }
+                    placeholder="Image Link"
+                    className="w-full p-2 border border-slate-300 rounded"
+                  />
+                  <input
+                    type="text"
+                    value={newProject.live_link}
+                    onChange={(e) =>
+                      setNewProject({
+                        ...newProject,
+                        live_link: e.target.value,
+                      })
+                    }
+                    placeholder="Live Link"
+                    className="w-full p-2 border border-slate-300 rounded"
                   />
                   <input
                     type="text"
@@ -216,7 +307,7 @@ export default function AdminPortal() {
                       })
                     }
                     placeholder="Github Link"
-                    className="w-full p-2 border border-gray-300 rounded"
+                    className="w-full p-2 border border-slate-300 rounded"
                   />
                   {/* Tools input */}
                   {newProject.tools.map((tool, idx) => (
@@ -229,12 +320,12 @@ export default function AdminPortal() {
                           tools[idx] = e.target.value;
                           setNewProject({ ...newProject, tools });
                         }}
-                        className="flex-1 p-2 border border-gray-300 rounded"
+                        className="flex-1 p-2 border border-slate-300 rounded"
                       />
                       <button
                         type="button"
                         onClick={() => removeTool(newProject.tools, idx)}
-                        className="bg-red-500 text-white px-2 rounded"
+                        className="bg-slate-800 text-white px-2 rounded"
                       >
                         Remove
                       </button>
@@ -243,13 +334,13 @@ export default function AdminPortal() {
                   <button
                     type="button"
                     onClick={() => addTool(newProject.tools)}
-                    className="bg-blue-500 text-white px-4 py-2 rounded"
+                    className="bg-slate-800 text-white px-4 py-2 rounded w-full"
                   >
                     Add Tool
                   </button>
                   <button
                     type="submit"
-                    className="bg-green-500 text-white px-4 py-2 rounded"
+                    className="bg-slate-800 text-white px-4 py-2 rounded w-full"
                   >
                     Create Project
                   </button>
