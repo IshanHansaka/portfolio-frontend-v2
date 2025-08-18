@@ -583,18 +583,6 @@ export default function AdminPortal() {
                   />
                   <input
                     type="text"
-                    value={newProject.live_link}
-                    onChange={(e) =>
-                      setNewProject({
-                        ...newProject,
-                        live_link: e.target.value,
-                      })
-                    }
-                    placeholder="Live Link"
-                    className="w-full p-2 border border-slate-300 rounded"
-                  />
-                  <input
-                    type="text"
                     value={newProject.github_link}
                     onChange={(e) =>
                       setNewProject({
@@ -603,6 +591,18 @@ export default function AdminPortal() {
                       })
                     }
                     placeholder="Github Link"
+                    className="w-full p-2 border border-slate-300 rounded"
+                  />
+                  <input
+                    type="text"
+                    value={newProject.live_link}
+                    onChange={(e) =>
+                      setNewProject({
+                        ...newProject,
+                        live_link: e.target.value,
+                      })
+                    }
+                    placeholder="Live Link"
                     className="w-full p-2 border border-slate-300 rounded"
                   />
                   {/* Tools input */}
@@ -710,18 +710,6 @@ export default function AdminPortal() {
                   />
                   <input
                     type="text"
-                    value={modifyProject.live_link}
-                    onChange={(e) =>
-                      setModifyProject({
-                        ...modifyProject,
-                        live_link: e.target.value,
-                      })
-                    }
-                    placeholder="New Live Link"
-                    className="w-full p-2 border border-slate-300 rounded"
-                  />
-                  <input
-                    type="text"
                     value={modifyProject.github_link}
                     onChange={(e) =>
                       setModifyProject({
@@ -730,6 +718,18 @@ export default function AdminPortal() {
                       })
                     }
                     placeholder="New Github Link"
+                    className="w-full p-2 border border-slate-300 rounded"
+                  />
+                  <input
+                    type="text"
+                    value={modifyProject.live_link}
+                    onChange={(e) =>
+                      setModifyProject({
+                        ...modifyProject,
+                        live_link: e.target.value,
+                      })
+                    }
+                    placeholder="New Live Link"
                     className="w-full p-2 border border-slate-300 rounded"
                   />
                   {/* Tools input for modify */}
