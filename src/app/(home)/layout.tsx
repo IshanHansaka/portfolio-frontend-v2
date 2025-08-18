@@ -3,6 +3,7 @@ import '../globals.css';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import { Poppins } from 'next/font/google';
+import Preloader from '@/components/Preloader';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -23,6 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.className} antialiased`}>
+        <Preloader />
         <Header />
         {children}
         <Footer />
