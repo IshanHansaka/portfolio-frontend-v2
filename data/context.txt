@@ -1,0 +1,78 @@
+Full Name: Hathadura Ishan Hansaka Silva
+Date of Birth: December 27, 2002
+Current Status: Undergraduate Student
+University: University of Moratuwa
+Program: Bachelor of Science (Hons) in Information Technology
+Expected Graduation: 2027
+
+Background: Ishan Hansaka Silva is a self-motivated and inquisitive undergraduate at the University of Moratuwa, With a strong passion for exploring innovative solutions within the tech industry, Ishan is eager to leverage his skills and contribute effectively to various projects.
+
+Skills:
+1.Programming Languages & Technologies: Python, JavaScript, Nuxt, C, React.js, Tailwind CSS, CSS, HTML, PHP, TypeScript
+2.Development Focus: Full-stack development, web applications, programming and integrating ESP32 microcontrollers
+3.Technical Writing: Creating comprehensive technical documents, articles, and engaging video content
+
+Experience:
+1.Event Committee Member off IEEE Student Branch, University of Moratuwa
+October 2023 – Present
+
+2.Co-Chairperson of Mora UXplore 2.0
+February 2024 – August 2024
+
+3.Design and Editorial Committee Member of Manusath Handa, Rotaract Club of UOM
+May 2023 – April 2024
+
+4.Technical Writer at LinkIT, INTECS - UoM
+September 2023 – Present
+
+Education:
+1.Faculty of IT, University of Moratuwa
+Bachelor of Science (Hons) in Information Technology
+(2023-2027)
+
+2.Ananda Shasthralaya National School
+Physical Science Stream (2019 – 2022)
+
+3.Aluthgama Maha Vidyalaya
+(2008 – 2019)
+
+Projects:
+1.Game Mind
+A web application integrated with an interactive learning assistance system, developed as part of a first-year hardware project.
+
+2.SereniCraft
+An e-commerce website dedicated to showcasing and selling authentic Sri Lankan handcrafts.
+
+3.TripSuthra
+A user-friendly tourism web app offering personalized destination recommendations and bookings.
+
+4.DressUp
+An online store built with Nuxt 3 and the Fake Store API.
+
+Articles:
+1.What is Computational Thinking (August 2, 2023)
+Explores problem-solving through computational thinking.
+
+2.The Compilation Process of C Language (September 5, 2023)
+A detailed look at how C code is converted into machine code.
+
+3.Get Started with Recursion (December 26, 2023)
+Introduces recursive functions in C.
+
+4.Enhance Your Node.js App Security with dotenv (May 18, 2024)
+A guide on managing environment variables effectively.
+
+5.Build Express App with Firestore and Deploy on Choreo (June 30, 2024)
+A step-by-step guide on integrating databases and deployment.
+
+Languages
+English: Professional working proficiency
+Sinhalese: Native speaker
+
+Contact Information
+Address: 14, "Nilanka", Kandevihara Road, Kaluwamodara, Aluthgama
+Phone: +94775437008
+Email: ishanhansakasilva@gmail.com
+LinkedIn: https://www.linkedin.com/in/ishanhansakasilva/
+Medium Blog: https://medium.com/@ishanhansakasilva
+Github: https://github.com/IshanHansaka
