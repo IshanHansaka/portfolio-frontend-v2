@@ -1,5 +1,5 @@
-import Project from '@/app/models/Project';
-import connectMongoDB from '@/app/lib/mongodb';
+import Project from '../../../../models/Project';
+import connectMongoDB from '../../../../lib/mongodb';
 import { NextResponse, NextRequest } from 'next/server';
 
 export async function POST(request: NextRequest) {

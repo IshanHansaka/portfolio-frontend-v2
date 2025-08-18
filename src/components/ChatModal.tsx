@@ -20,8 +20,6 @@ export default function ChatModal({ isOpen, onClose }: ChatModalProps) {
   const chatMessagesRef = useRef<HTMLDivElement>(null);
   const modalRef = useRef<HTMLDivElement>(null);
 
-  const backendURL = process.env.NEXT_PUBLIC_BACKEND_API_URL;
-
   // Handle click outside to close
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -87,7 +85,7 @@ export default function ChatModal({ isOpen, onClose }: ChatModalProps) {
     scrollToEnd();
 
     try {
-      const res = await fetch(`${backendURL}/chat`, {
+      const res = await fetch('/api/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
