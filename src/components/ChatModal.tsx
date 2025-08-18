@@ -20,7 +20,7 @@ export default function ChatModal({ isOpen, onClose }: ChatModalProps) {
   const chatMessagesRef = useRef<HTMLDivElement>(null);
   const modalRef = useRef<HTMLDivElement>(null);
 
-  const backendURL = process.env.NEXT_PUBLIC_API_URL;
+  const backendURL = process.env.NEXT_PUBLIC_BACKEND_API_URL;
 
   // Handle click outside to close
   useEffect(() => {
