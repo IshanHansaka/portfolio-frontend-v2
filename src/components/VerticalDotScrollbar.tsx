@@ -151,7 +151,7 @@ export default function VerticalDotScrollbar() {
           <div
             key={section.id}
             id={section.id}
-            className="h-screen flex justify-center items-center bg-gradient-to-r from-slate-100 via-indigo-50 to-slate-100"
+            className="h-screen flex justify-center items-center bg-gradient-to-r from-slate-200 via-indigo-100 to-slate-200"
           >
             {section.component}
           </div>
