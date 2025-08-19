@@ -21,7 +21,7 @@ export default function Header() {
             <div className="flex items-center justify-between">
               <div className="flex-shrink-0 relative w-48 h-12 md:w-48 md:h-6 lg:w-60 lg:h-10 xl:w-80 xl:h-24">
                 <Image
-                  src="/images/name-logo3.webp"
+                  src="/images/name-logo4.png"
                   alt="logo"
                   fill
                   className="object-contain"
