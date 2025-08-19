@@ -18,8 +18,10 @@ body {
   color: var(--foreground);
 }
 
+/* Responsive loader sizes and text */
 .loader {
-  width: 60px;
+  width: 4vw;
+  max-width: 60px;
   aspect-ratio: 1;
   display: grid;
   border-radius: 50%;
@@ -72,11 +74,24 @@ body {
   flex-direction: column;
   overflow: hidden;
   background: rgba(0, 0, 0);
+  padding: 2vw;
 }
 
 .loading-text {
   color: white;
-  font-size: 18px;
+  font-size: 4vw;
   font-weight: bold;
-  margin-top: 15px;
+  margin-top: 3vw;
+  text-align: center;
+}
+
+/* Optional: Media queries for extra control */
+@media (min-width: 640px) {
+  .loader {
+    max-width: 100px;
+  }
+  .loading-text {
+    font-size: 18px;
+    margin-top: 15px;
+  }
 }

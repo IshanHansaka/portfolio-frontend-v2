@@ -7,17 +7,17 @@ import Link from 'next/link';
 export default function AboutPage() {
   const experiences = [
     {
-      image: '/images/ieee-sb-logo.jpg',
+      image: '/images/ieee-sb-logo.webp',
       role: 'Lead of the Events Committee',
       organization: 'IEEE Student Branch University of Moratuwa',
     },
     {
-      image: '/images/intecs-logo.png',
+      image: '/images/intecs-logo.webp',
       role: 'Technical Writer',
       organization: 'LinkIT by INTECS',
     },
     {
-      image: '/images/freelancer-logo.jpg',
+      image: '/images/freelancer-logo.webp',
       role: 'Web Development Freelancer',
       organization: 'Local Clients',
     },
@@ -25,17 +25,17 @@ export default function AboutPage() {
 
   const education = [
     {
-      image: '/images/uom-logo.png',
+      image: '/images/uom-logo.webp',
       degree: 'B.Sc. (Hons.) in Information Technology',
       institution: 'University of Moratuwa',
     },
     {
-      image: '/images/asm-logo.png',
+      image: '/images/asm-logo.webp',
       degree: 'G.C.E. Advanced Level',
       institution: 'Ananda Sastralaya National School',
     },
     {
-      image: '/images/avns-logo.jpg',
+      image: '/images/avns-logo.webp',
       degree: 'G.C.E. Ordinary Level',
       institution: 'Aluthgama Maha Vidyalaya',
     },
