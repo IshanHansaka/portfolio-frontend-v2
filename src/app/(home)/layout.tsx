@@ -27,11 +27,11 @@ export const metadata: Metadata = {
     title: 'Ishan Hansaka',
     description:
       'Portfolio showcasing web development, IoT, and innovative software solutions by Ishan Hansaka.',
-    url: 'https://ishanhansaka.vercel.app/',
+    url: 'https://www.ishanhansaka.dev/',
     siteName: 'Ishan Hansaka Portfolio',
     images: [
       {
-        url: 'https://ishanhansaka.vercel.app/og.png',
+        url: 'https://www.ishanhansaka.dev//og.png',
         width: 1200,
         height: 630,
         alt: 'Ishan Hansaka Portfolio Preview',
