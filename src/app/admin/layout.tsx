@@ -14,7 +14,12 @@ export default function AdminLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${poppins.className} antialiased`}>{children}</body>
+      <body
+        className={`${poppins.className} antialiased`}
+        style={{ overflow: 'auto' }}
+      >
+        {children}
+      </body>
     </html>
   );
 }

@@ -12,8 +12,33 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: 'Ishan Hansaka Silva',
-  description: 'My personal portfolio',
+  title: 'Ishan Hansaka',
+  description:
+    'Explore the portfolio of Ishan Hansaka – Web Developer, Software Engineer, and Technology Enthusiast. Showcasing projects, skills, and achievements in web development, IoT, and innovative software solutions.',
+  keywords: [
+    'Ishan Hansaka',
+    'Web Developer Portfolio',
+    'Software Engineer',
+    'React Developer',
+    'Next.js Portfolio',
+  ],
+  authors: [{ name: 'Ishan Hansaka' }],
+  openGraph: {
+    title: 'Ishan Hansaka',
+    description:
+      'Portfolio showcasing web development, IoT, and innovative software solutions by Ishan Hansaka.',
+    url: 'https://ishanhansaka.vercel.app/',
+    siteName: 'Ishan Hansaka Portfolio',
+    images: [
+      {
+        url: 'https://ishanhansaka.vercel.app/og.png',
+        width: 1200,
+        height: 630,
+        alt: 'Ishan Hansaka Portfolio Preview',
+      },
+    ],
+    type: 'website',
+  },
 };
 
 export default function RootLayout({
@@ -23,7 +48,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${poppins.className} antialiased`}>
+      <body
+        className={`${poppins.className} antialiased`}
+        style={{ overflow: 'hidden' }}
+      >
         <Preloader />
         <Header />
         {children}
