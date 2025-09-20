@@ -8,13 +8,13 @@ export default function AboutPage() {
   const experiences = [
     {
       image: '/images/ieee-sb-logo.webp',
-      role: 'Lead of the Events Committee',
+      role: 'WebMaster',
       organization: 'IEEE Student Branch University of Moratuwa',
     },
     {
       image: '/images/intecs-logo.webp',
-      role: 'Technical Writer',
-      organization: 'LinkIT by INTECS',
+      role: 'committee member',
+      organization: 'INTECS University of Moratuwa',
     },
     {
       image: '/images/freelancer-logo.webp',
