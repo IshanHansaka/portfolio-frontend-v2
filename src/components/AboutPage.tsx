@@ -13,7 +13,7 @@ export default function AboutPage() {
     },
     {
       image: '/images/intecs-logo.webp',
-      role: 'committee member',
+      role: 'Committee Member',
       organization: 'INTECS University of Moratuwa',
     },
     {
